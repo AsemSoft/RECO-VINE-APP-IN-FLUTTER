@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:smart_test/pages/home_page.dart';
+import 'package:smart_test/pages/search.dart';
 import 'package:smart_test/service/themeService.dart';
 import 'package:get/get.dart';
 import 'UI/theme.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       darkTheme:Themes.darkMode,
       themeMode:ThemeService().theme,
 
-      home: const MyHomePage(),
+      home: const Search(),
     );
   }
 }
