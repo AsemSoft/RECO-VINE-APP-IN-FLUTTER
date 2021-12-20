@@ -41,6 +41,8 @@ dependencies:
   google_fonts:
   url_launcher:
   font_awesome_flutter:
+  splash_screen_view:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +71,9 @@ flutter:
    - images/profile.png
    - images/group.png
    - images/about-us.png
+   - images/fruit.png
+   - images/fruit_grab_juse.jpg
+   - images/grapes.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

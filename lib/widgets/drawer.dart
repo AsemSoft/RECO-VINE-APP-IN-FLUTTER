@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:smart_test/UI/theme.dart';
 import 'package:smart_test/pages/about_us.dart';
 import 'package:smart_test/pages/contact_us.dart';
+import 'package:smart_test/pages/search.dart';
 import 'package:smart_test/service/themeService.dart';
 
 class MainDrawer extends StatefulWidget {
@@ -41,7 +42,9 @@ class _MainDrawerState extends State<MainDrawer> {
           height: 20,
         ),
         ListTile(
-          onTap: () {},
+          onTap: () {
+          Get.to(Search());
+          },
           title: Text("Saved File"),
           leading: Icon(Icons.save),
           iconColor: Colors.green,
