@@ -43,26 +43,21 @@ class _MainDrawerState extends State<MainDrawer> {
         ),
         ListTile(
           onTap: () {
-          Get.to(Search());
+            Get.to(SearchPage());
           },
           title: Text("Saved File"),
           leading: Icon(Icons.save),
           iconColor: Colors.green,
         ),
-
         ListTile(
           onTap: () {
             setState(() {
-
               ThemeService().switchTheme();
-
             });
           },
-
-          title: Get.isDarkMode ?Text("Dark Mode"):Text("Light Mode"),
+          title: Get.isDarkMode ? Text("Light Mode") : Text(" Dark Mode"),
           leading: Icon(
-            Get.isDarkMode ?  Icons.wb_sunny_outlined :Icons.nightlight_round,
-            // color: Get.isDarkMode ? Colors.white : primaryColor,
+            Get.isDarkMode ? Icons.wb_sunny_outlined : Icons.nightlight_round,
           ),
           iconColor: Colors.green,
         ),
@@ -77,7 +72,6 @@ class _MainDrawerState extends State<MainDrawer> {
         ListTile(
           onTap: () {
             Get.to(ContactUs());
-
           },
           title: Text("Contact Us"),
           leading: Icon(Icons.perm_phone_msg),
