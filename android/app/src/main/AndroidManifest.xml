@@ -2,7 +2,7 @@
     package="com.example.smart_test">
    <application
        android:requestLegacyExternalStorage="true"
-        android:label="smart_test"
+        android:label="RECO VINE"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

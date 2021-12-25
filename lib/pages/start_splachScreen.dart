@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_test/UI/theme.dart';
 import 'package:smart_test/main.dart';
-import 'package:smart_test/pages/home_page.dart';
 import 'package:smart_test/pages/main_page.dart';
 import 'package:smart_test/service/themeService.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';

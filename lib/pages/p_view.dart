@@ -5,7 +5,6 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_test/UI/theme.dart';
 import 'package:smart_test/main.dart';
-import 'package:smart_test/pages/home_page.dart';
 import 'package:smart_test/pages/start_splachScreen.dart';
 import 'package:smart_test/service/themeService.dart';
 
@@ -21,7 +20,7 @@ class _PViewState extends State<PView> {
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-
+debugShowCheckedModeBanner: false,
       theme: Themes.lightMode,
       darkTheme:Themes.darkMode,
       themeMode:ThemeService().theme,
@@ -107,10 +106,10 @@ class _PViewState extends State<PView> {
   }
 
 
-  void selectScreen(BuildContext ctx) {
+  /*void selectScreen(BuildContext ctx) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (c) {
       return MyHomePage();
     }));
-  }
+  }*/
 }
 

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_test/pages/home_page.dart';
 import 'package:smart_test/pages/main_page.dart';
 import 'package:smart_test/pages/p_view.dart';
 import 'package:smart_test/pages/search.dart';
