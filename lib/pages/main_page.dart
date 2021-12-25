@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 import 'package:smart_test/UI/theme.dart';
 import 'package:smart_test/pages/result_page.dart';
 import 'package:smart_test/provider/add_file.dart';
-import 'package:smart_test/service/themeService.dart';
 import 'package:smart_test/widgets/drawer.dart';
+import 'package:swipebuttonflutter/swipebuttonflutter.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -89,46 +89,51 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Main Page"),
-          centerTitle: true,
-        ),
-        drawer: Drawer(
-          child: MainDrawer(),
-        ),
-        body: Container(
-          padding: const EdgeInsets.all(20),
+      appBar: AppBar(
+        title: Text("Main Page"),
+        centerTitle: true,
+      ),
+      drawer: Drawer(
+        child: MainDrawer(),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
           child: Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 10),
                 child: Container(
+                  margin: EdgeInsets.all(5),
+
                   decoration: BoxDecoration(
+
                     color: Colors.lightGreen,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   padding: const EdgeInsets.all(5),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
                         height: 90,
                         width: 100,
-                        child: img != null
-                            ? Image.file(img!)
+                        child: img == null
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: Image.asset('images/leaf.png',
+                                    fit: BoxFit.fill, color: Colors.white))
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(30),
-                                child: Image.asset('images/gallery.png',
-                                    fit: BoxFit.contain)),
+                                child: Image.file(
+                                  img!,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(left: 20, right: 46),
                         child: Text(
-                          'image #1',
+                          'image 1',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
@@ -147,7 +152,10 @@ class _MainPageState extends State<MainPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
-                            Text('Add' ,style: TextStyle(color: Colors.white),),
+                            Text(
+                              'Add',
+                              style: TextStyle(color: Colors.white),
+                            ),
                             Icon(Icons.add, color: Colors.white),
                           ],
                         ),
@@ -186,7 +194,8 @@ class _MainPageState extends State<MainPage> {
                               ),
                             ),
                           );
-                          showDialog(context: context, builder: (context) => ad);
+                          showDialog(
+                              context: context, builder: (context) => ad);
                         },
                       )
                     ],
@@ -194,16 +203,16 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 10),
                 child: Container(
+                  margin: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.lightGreen,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   padding: const EdgeInsets.all(5),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
                         height: 90,
@@ -211,14 +220,20 @@ class _MainPageState extends State<MainPage> {
                         child: img2 == null
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(30),
-                                child: Image.asset('images/gallery.png',
-                                    fit: BoxFit.fill))
-                            : Image.file(img2!),
+                                child: Image.asset('images/leaf.png',
+                                    fit: BoxFit.fill, color: Colors.white))
+                            : ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: Image.file(
+                                  img2!,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(left: 20, right: 46),
                         child: Text(
-                          'image #2',
+                          'image 2',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
@@ -236,9 +251,11 @@ class _MainPageState extends State<MainPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
-                            Text('Add' ,style: TextStyle(color: Colors.white),),
+                            Text(
+                              'Add',
+                              style: TextStyle(color: Colors.white),
+                            ),
                             Icon(Icons.add, color: Colors.white),
-
                           ],
                         ),
                         onPressed: () {
@@ -276,7 +293,8 @@ class _MainPageState extends State<MainPage> {
                               ),
                             ),
                           );
-                          showDialog(context: context, builder: (context) => ad);
+                          showDialog(
+                              context: context, builder: (context) => ad);
                         },
                       )
                     ],
@@ -284,16 +302,16 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 10),
                 child: Container(
+                  margin:const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.lightGreen,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   padding: const EdgeInsets.all(5),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
                         height: 90,
@@ -301,14 +319,20 @@ class _MainPageState extends State<MainPage> {
                         child: img3 == null
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(30),
-                                child: Image.asset('images/gallery.png',
-                                    fit: BoxFit.fill))
-                            : Image.file(img3!),
+                                child: Image.asset('images/leaf.png',
+                                    fit: BoxFit.fill, color: Colors.white))
+                            : ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: Image.file(
+                                  img3!,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(left: 20, right: 46),
                         child: Text(
-                          'image #3',
+                          'image 3',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
@@ -326,7 +350,10 @@ class _MainPageState extends State<MainPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
-                            Text('Add' ,style: TextStyle(color: Colors.white),),
+                            Text(
+                              'Add',
+                              style: TextStyle(color: Colors.white),
+                            ),
                             Icon(Icons.add, color: Colors.white),
                           ],
                         ),
@@ -365,7 +392,8 @@ class _MainPageState extends State<MainPage> {
                               ),
                             ),
                           );
-                          showDialog(context: context, builder: (context) => ad);
+                          showDialog(
+                              context: context, builder: (context) => ad);
                         },
                       )
                     ],
@@ -373,32 +401,37 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 10),
                 child: Container(
+                  margin:const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.lightGreen,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   padding: const EdgeInsets.all(5),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
                         height: 90,
                         width: 100,
                         child: img4 == null
                             ? ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: Image.asset('images/gallery.png',
-                                  fit: BoxFit.fill),
-                            )
-                            : Image.file(img4!),
+                                borderRadius: BorderRadius.circular(30),
+                                child: Image.asset('images/leaf.png',
+                                    fit: BoxFit.fill, color: Colors.white))
+                            : ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: Image.file(
+                                  img4!,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(left: 20, right: 46),
                         child: Text(
-                          'image #4',
+                          'image 4',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
@@ -416,7 +449,10 @@ class _MainPageState extends State<MainPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
-                            Text('Add' ,style: TextStyle(color: Colors.white),),
+                            Text(
+                              'Add',
+                              style: TextStyle(color: Colors.white),
+                            ),
                             Icon(Icons.add, color: Colors.white),
                           ],
                         ),
@@ -455,7 +491,8 @@ class _MainPageState extends State<MainPage> {
                               ),
                             ),
                           );
-                          showDialog(context: context, builder: (context) => ad);
+                          showDialog(
+                              context: context, builder: (context) => ad);
                         },
                       )
                     ],
@@ -463,16 +500,16 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 10),
                 child: Container(
+                  margin:const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.lightGreen,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   padding: const EdgeInsets.all(5),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
                         height: 90,
@@ -480,14 +517,20 @@ class _MainPageState extends State<MainPage> {
                         child: img5 == null
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(30),
-                                child: Image.asset('images/gallery.png',
-                                    fit: BoxFit.fill))
-                            : Image.file(img5!),
+                                child: Image.asset('images/leaf.png',
+                                    fit: BoxFit.fill, color: Colors.white))
+                            : ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: Image.file(
+                                  img5!,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(left: 20, right: 46),
                         child: Text(
-                          'image #5',
+                          'image 5',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
@@ -505,7 +548,10 @@ class _MainPageState extends State<MainPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
-                            Text('Add' ,style: TextStyle(color: Colors.white),),
+                            Text(
+                              'Add',
+                              style: TextStyle(color: Colors.white),
+                            ),
                             Icon(Icons.add, color: Colors.white),
                           ],
                         ),
@@ -544,7 +590,8 @@ class _MainPageState extends State<MainPage> {
                               ),
                             ),
                           );
-                          showDialog(context: context, builder: (context) => ad);
+                          showDialog(
+                              context: context, builder: (context) => ad);
                         },
                       )
                     ],
@@ -552,41 +599,101 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               const SizedBox(
-                height: 40,
+                height: 30,
               ),
-              MaterialButton(
-                  minWidth: MediaQuery.of(context).size.width * .9,
-                  padding: const EdgeInsets.all(10),
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    topLeft: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20),
-                  )),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SwipingButton(
+
                   height: 60,
-                  color: primaryColor,
-                  child: const Text('swipe right to execute the treatment' ,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16,color: Colors.white)),
-                  onPressed: () async {
+                  iconColor: primaryColor,
+                  swipeButtonColor: Colors.white,
+                  backgroundColor: primaryColor,
+                  text: "swipe right to execute ",
+                  buttonTextStyle: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: primaryColor,
+                  ),
+                  onSwipeCallback: () async {
                     print(imageFile);
                     AddFile imageFile1 =
                         Provider.of<AddFile>(context, listen: false);
                     await imageFile1.addImage(imageFile);
                     if (imageFile1.imageFile.length >= 3) {
-
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>  ResultPage(),
+                            builder: (context) => ResultPage(),
                           ));
+                    } else {
+                      Get.snackbar(
+                        'Error',
+                        'Image Selected less than two',
+                        snackPosition: SnackPosition.BOTTOM,
+                        colorText: Colors.red,
+                        leftBarIndicatorColor: Colors.red,
+                        backgroundColor: Colors.white,
+                        icon: Icon(
+                          Icons.error,
+                          color: Colors.red,
+                        ),
+                      );
                     }
-                  })
+                  },
+                ),
+              ),
+
+
+              // MaterialButton(
+
+              //   minWidth: MediaQuery.of(context).size.width * .9,
+              //   padding: const EdgeInsets.all(10),
+              //   shape: const RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.only(
+              //     topRight: Radius.circular(20),
+              //     topLeft: Radius.circular(20),
+              //     bottomLeft: Radius.circular(20),
+              //     bottomRight: Radius.circular(20),
+              //   )),
+              //   height: 60,
+              //   color: primaryColor,
+              //   child: const Text('swipe right to execute the treatment',
+              //       style: TextStyle(
+              //           fontWeight: FontWeight.bold,
+              //           fontSize: 16,
+              //           color: Colors.white)),
+              //   onPressed: () async {
+              //     print(imageFile);
+              //     AddFile imageFile1 =
+              //         Provider.of<AddFile>(context, listen: false);
+              //     await imageFile1.addImage(imageFile);
+              //     if (imageFile1.imageFile.length >= 3) {
+              //       Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //             builder: (context) => ResultPage(),
+              //           ));
+              //     } else {
+              //       Get.snackbar(
+              //         'Error',
+              //         'Image Selected less than two',
+              //         snackPosition: SnackPosition.BOTTOM,
+              //         colorText: Colors.red,
+              //         leftBarIndicatorColor: Colors.red,
+              //         backgroundColor: Colors.white,
+              //         icon: Icon(
+              //           Icons.error,
+              //           color: Colors.red,
+              //         ),
+              //       );
+              //     }
+              //   },
+              // ),
             ],
           ),
         ),
-
+      ),
     );
   }
 }

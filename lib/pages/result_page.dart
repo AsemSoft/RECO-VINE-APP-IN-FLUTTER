@@ -48,16 +48,16 @@ class _ResultPageState extends State<ResultPage> {
             ),
             Container(
               decoration: BoxDecoration(
-                color:primaryColor,
-                borderRadius: BorderRadius.circular(20)
-
-              ),
+                  color: primaryColor, borderRadius: BorderRadius.circular(20)),
               height: 70,
               width: MediaQuery.of(context).size.width * .8,
               alignment: Alignment.center,
               child: const Text(
                 'THE RESULT',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 34,color: Colors.white),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 34,
+                    color: Colors.white),
               ),
             ),
             const SizedBox(
@@ -67,7 +67,6 @@ class _ResultPageState extends State<ResultPage> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: secondColor,
-
               ),
               width: MediaQuery.of(context).size.width * .8,
               height: MediaQuery.of(context).size.height * .53,
@@ -80,7 +79,6 @@ class _ResultPageState extends State<ResultPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       Container(
-
                         padding: const EdgeInsets.all(0),
                         child: Column(
                           children: [
@@ -91,7 +89,10 @@ class _ResultPageState extends State<ResultPage> {
                                 width: 55,
                                 child: imageFile.isEmpty
                                     ? Container()
-                                    : Image.file(imageFile.elementAt(0)),
+                                    : Image.file(
+                                        imageFile.elementAt(0),
+                                        fit: BoxFit.cover,
+                                      ),
                               ),
                             ),
                             const SizedBox(
@@ -100,7 +101,10 @@ class _ResultPageState extends State<ResultPage> {
                             imageFile.isEmpty
                                 ? Container()
                                 : Container(
-                                    color: _colors3,
+                                    decoration: BoxDecoration(
+                                        color: _colors3,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     alignment: Alignment.center,
                                     height: 40,
                                     width: 50,
@@ -122,7 +126,10 @@ class _ResultPageState extends State<ResultPage> {
                                 height: 55,
                                 width: 55,
                                 child: imageFile.length >= 2
-                                    ? Image.file(imageFile.elementAt(1))
+                                    ? Image.file(
+                                        imageFile.elementAt(1),
+                                        fit: BoxFit.cover,
+                                      )
                                     : Container(),
                               ),
                             ),
@@ -131,7 +138,10 @@ class _ResultPageState extends State<ResultPage> {
                             ),
                             imageFile.length >= 2
                                 ? Container(
-                                    color: _colors3,
+                                    decoration: BoxDecoration(
+                                        color: _colors3,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     alignment: Alignment.center,
                                     height: 40,
                                     width: 50,
@@ -154,7 +164,10 @@ class _ResultPageState extends State<ResultPage> {
                                 height: 55,
                                 width: 55,
                                 child: imageFile.length >= 3
-                                    ? Image.file(imageFile.elementAt(2))
+                                    ? Image.file(
+                                        imageFile.elementAt(2),
+                                        fit: BoxFit.cover,
+                                      )
                                     : Container(),
                               ),
                             ),
@@ -163,7 +176,10 @@ class _ResultPageState extends State<ResultPage> {
                             ),
                             imageFile.length >= 3
                                 ? Container(
-                                    color: _colors,
+                                    decoration: BoxDecoration(
+                                        color: _colors,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     alignment: Alignment.center,
                                     height: 40,
                                     width: 50,
@@ -186,7 +202,10 @@ class _ResultPageState extends State<ResultPage> {
                                 height: 55,
                                 width: 55,
                                 child: imageFile.length >= 4
-                                    ? Image.file(imageFile.elementAt(3))
+                                    ? Image.file(
+                                        imageFile.elementAt(3),
+                                        fit: BoxFit.cover,
+                                      )
                                     : Container(),
                               ),
                             ),
@@ -195,7 +214,10 @@ class _ResultPageState extends State<ResultPage> {
                             ),
                             imageFile.length >= 4
                                 ? Container(
-                                    color: _colors4,
+                                    decoration: BoxDecoration(
+                                        color: _colors4,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     alignment: Alignment.center,
                                     height: 40,
                                     width: 50,
@@ -217,7 +239,10 @@ class _ResultPageState extends State<ResultPage> {
                                 height: 55,
                                 width: 55,
                                 child: imageFile.length >= 5
-                                    ? Image.file(imageFile.elementAt(4))
+                                    ? Image.file(
+                                        imageFile.elementAt(4),
+                                        fit: BoxFit.cover,
+                                      )
                                     : Container(),
                               ),
                             ),
@@ -226,7 +251,10 @@ class _ResultPageState extends State<ResultPage> {
                             ),
                             imageFile.length >= 4
                                 ? Container(
-                                    color: _colors5,
+                                    decoration: BoxDecoration(
+                                        color: _colors5,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     alignment: Alignment.center,
                                     height: 40,
                                     width: 50,
@@ -249,22 +277,18 @@ class _ResultPageState extends State<ResultPage> {
                     child: Container(
                       decoration: BoxDecoration(
                           color: secondColor,
-
-                          borderRadius: BorderRadius.circular(20)
-                      ),
+                          borderRadius: BorderRadius.circular(20)),
                       height: MediaQuery.of(context).size.height * .3,
                       width: MediaQuery.of(context).size.width * .69,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
                               'images/2.jpg',
                             ),
                           ],
-
                         ),
                       ),
                     ),

@@ -20,7 +20,7 @@ class _StrartSplachScreenState extends State<StrartSplachScreen> {
         navigateRoute: MainPage(),
         duration:5000 ,
         imageSize: 250,
-        imageSrc:"images/grapes.png",
+        imageSrc:"images/started page.png",
         text: "RECO VINE APP",
         textType: TextType.ColorizeAnimationText,
         colors: [
