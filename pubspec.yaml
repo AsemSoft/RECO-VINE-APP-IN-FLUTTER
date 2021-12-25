@@ -51,12 +51,8 @@ dependencies:
   permission_handler: ^8.3.0
   swipebuttonflutter: ^1.0.0
 dev_dependencies:
-  flutter_launcher_icons: ^0.9.2
 
-flutter_icons:
-  android: true
-  ios: true
-  image_path: "assets/icon/icon.png"
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
