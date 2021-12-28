@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:smart_test/UI/theme.dart';
+import 'package:smart_test/pages/main_page.dart';
 import 'package:smart_test/service/utils.dart';
 import 'package:smart_test/widgets/drawer.dart';
 
@@ -10,6 +11,14 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.to(MainPage());
+            },
+            icon: Icon(Icons.home),
+          ),
+        ],
         title: Text("About Us"),
       ),
         drawer: Drawer(

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:smart_test/service/utils.dart';
 import 'package:smart_test/widgets/drawer.dart';
+
+import 'main_page.dart';
 
 class ContactUs extends StatelessWidget {
   const ContactUs({Key? key}) : super(key: key);
@@ -10,6 +13,14 @@ class ContactUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.to(MainPage());
+            },
+            icon: Icon(Icons.home),
+          ),
+        ],
         title: Text("Contact Us"),
       ),
       drawer: Drawer(
