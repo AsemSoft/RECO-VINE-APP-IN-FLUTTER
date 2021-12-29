@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,10 +9,14 @@ import 'package:smart_test/pages/main_page.dart';
 import 'package:smart_test/pages/search.dart';
 
 import 'package:smart_test/provider/add_file.dart';
+import 'package:smart_test/service/file_db.dart';
+import 'package:smart_test/service/image_file.dart';
+import 'package:smart_test/ulity.dart';
 import 'package:smart_test/widgets/drawer.dart';
 
 class ResultPage extends StatefulWidget {
   const ResultPage({Key? key}) : super(key: key);
+  static List <String>results=[];
 
   @override
   _ResultPageState createState() => _ResultPageState();
@@ -23,6 +28,28 @@ class _ResultPageState extends State<ResultPage> {
   final Color _colors3 = const Color(0x59011509);
   final Color _colors4 = const Color(0x593E6D2F);
   final Color _colors5 = const Color(0x5967AF34);
+  bool isLoading= false;
+  double progress = 0.0;
+  final Dio dio=Dio();
+  late DatabaseFile db=DatabaseFile();
+  late List <ImagesFile> imagesFile;
+
+
+  refresh(){
+    db.getAllImagesFile().then((value){
+      imagesFile.clear();
+      imagesFile.addAll(value);
+    });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    db=DatabaseFile();
+    imagesFile=[];
+    refresh();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -346,12 +373,32 @@ class _ResultPageState extends State<ResultPage> {
                             color: Colors.white,
                             size: 35,
                           ),
-                          onPressed: () {
+                          onPressed: (){
+                            db.save(
+                                ImagesFile(
+                                    id: db.getID(),
+                                    date: DateTime.now(),
+                                    details: 'this result for flowers',
+                                    image1: Utility.imageName[0],
+                                    image2: Utility.imageName[1],
+                                    image3: Utility.imageName[2],
+                                    image4: Utility.imageName[3],
+                                    image5: Utility.imageName[4],
+                                    result1: '94%',
+                                    result2: '87%',
+                                    result3: '54%',
+                                    result4: '45%',
+                                    result5: '33%',
+                                    name: 'results${db.getID()}'
+                                ));
+                            // downloadFile();
+                            //Navigator.of(context).pop;
+                            print(Utility.name+'${db.getID()}');
+                            print(db.getAllImagesFile());
+
                             Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) => const SearchPage(),
-                                ));
+                                MaterialPageRoute(builder: (context) => const SearchPage(),));
                           },
                         ),
                         const Text('Save', style: TextStyle(fontSize: 18)),

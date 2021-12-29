@@ -105,7 +105,7 @@ class _MainPageState extends State<MainPage> {
           child: MainDrawer(),
         ),
         body:
-        child: Container(
+        Container(
     child: Column(
     children: <Widget>[
     Padding(

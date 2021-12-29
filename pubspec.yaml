@@ -43,13 +43,17 @@ dependencies:
   font_awesome_flutter:
   splash_screen_view:
   shared_preferences:
-  image_picker: ^0.8.3+3
   provider: ^5.0.0
   image_gallery_saver: ^1.7.1
   dio_log: ^2.0.2
   fluttertoast: ^8.0.8
   permission_handler: ^8.3.0
   swipebuttonflutter: ^1.0.0
+  sqflite:
+  dio:
+  intl: ^0.17.0
+  image_picker: ^0.8.3+3
+
 dev_dependencies:
 
 
