@@ -32,6 +32,18 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar:AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MainPage(),
+                  ));
+            },
+            icon: Icon(Icons.home),
+          ),
+        ],
         backgroundColor: _colors,
         title:Container(
           decoration: BoxDecoration(

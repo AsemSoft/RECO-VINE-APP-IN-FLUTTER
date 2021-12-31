@@ -93,7 +93,11 @@ class _MainPageState extends State<MainPage> {
           actions: [
             IconButton(
               onPressed: () {
-                Get.to(MainPage());
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MainPage(),
+                    ));
               },
               icon: Icon(Icons.home),
             ),
