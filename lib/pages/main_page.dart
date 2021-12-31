@@ -635,19 +635,47 @@ class _MainPageState extends State<MainPage> {
           MaterialPageRoute(
           builder: (context) => ResultPage(),
           ));
-          } else {
-          Get.snackbar(
-          'Error',
-          'Image Selected less than two',
-          snackPosition: SnackPosition.BOTTOM,
-          colorText: Colors.red,
-          leftBarIndicatorColor: Colors.red,
-          backgroundColor: Colors.white,
-          icon: Icon(
-          Icons.error,
-          color: Colors.red,
-          ),
+          }else if(imageFile1.imageFile.length == 0){
+            Get.defaultDialog(
+              title: "Error",
+              middleText: "No Image selected ",
+              backgroundColor: primaryColor,
+              titleStyle: TextStyle(color: Colors.red),
+              middleTextStyle: TextStyle(color: Colors.white),
+              textCancel: "Cancel",
+              cancelTextColor: Colors.white,
+              buttonColor: Colors.white,
+              barrierDismissible: false,
+              radius: 30,
+            );
+
+          }
+          else {
+          Get.defaultDialog(
+            title: "Error",
+            middleText: "Image selected is less than two ",
+            backgroundColor: primaryColor,
+            titleStyle: TextStyle(color: Colors.red),
+            middleTextStyle: TextStyle(color: Colors.white),
+            textCancel: "Cancel",
+            cancelTextColor: Colors.white,
+            buttonColor: Colors.white,
+            barrierDismissible: false,
+            radius: 30,
+
           );
+          // Get.snackbar(
+          // 'Error',
+          // 'Image Selected less than two',
+          // snackPosition: SnackPosition.BOTTOM,
+          // colorText: Colors.red,
+          // leftBarIndicatorColor: Colors.red,
+          // backgroundColor: Colors.white,
+          // icon: Icon(
+          // Icons.error,
+          // color: Colors.red,
+          // ),
+          // );
           }
           },
           ),

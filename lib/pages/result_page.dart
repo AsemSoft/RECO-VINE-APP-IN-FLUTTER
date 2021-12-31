@@ -60,7 +60,7 @@ class _ResultPageState extends State<ResultPage> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.pushReplacement(
+                Navigator.pop(
                     context,
                     MaterialPageRoute(
                       builder: (context) => MainPage(),
