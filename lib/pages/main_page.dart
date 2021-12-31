@@ -613,9 +613,20 @@ class _MainPageState extends State<MainPage> {
           ),
           Padding(
           padding: const EdgeInsets.all(8.0),
-          child: SwipingButton(
+          child: MaterialButton(
+          color: primaryColor,
+            minWidth: MediaQuery.of(context).size.width * .9,
+            padding: const EdgeInsets.all(10),
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(20),
+                  topLeft: Radius.circular(20),
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                )),
           height: 60,
-          iconColor: primaryColor,
+          child: Text("Swipe To Execute", style: TextStyle(color: Colors.white ,fontSize: 20,fontWeight: FontWeight.bold),),
+          /*iconColor: primaryColor,
           swipeButtonColor: Colors.white,
           backgroundColor: primaryColor,
           text: "swipe right to execute ",
@@ -623,8 +634,8 @@ class _MainPageState extends State<MainPage> {
           fontWeight: FontWeight.bold,
           fontSize: 16,
           color: primaryColor,
-          ),
-          onSwipeCallback: () async {
+          ),*/
+          onPressed: () async {
           print(imageFile);
           AddFile imageFile1 =
           Provider.of<AddFile>(context, listen: false);
@@ -664,6 +675,8 @@ class _MainPageState extends State<MainPage> {
             radius: 30,
 
           );
+
+          // snakbar we can delete
           // Get.snackbar(
           // 'Error',
           // 'Image Selected less than two',
@@ -683,15 +696,15 @@ class _MainPageState extends State<MainPage> {
 
           // MaterialButton(
 
-          //   minWidth: MediaQuery.of(context).size.width * .9,
-          //   padding: const EdgeInsets.all(10),
-          //   shape: const RoundedRectangleBorder(
-          //       borderRadius: BorderRadius.only(
-          //     topRight: Radius.circular(20),
-          //     topLeft: Radius.circular(20),
-          //     bottomLeft: Radius.circular(20),
-          //     bottomRight: Radius.circular(20),
-          //   )),
+            // minWidth: MediaQuery.of(context).size.width * .9,
+            // padding: const EdgeInsets.all(10),
+            // shape: const RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.only(
+            //   topRight: Radius.circular(20),
+            //   topLeft: Radius.circular(20),
+            //   bottomLeft: Radius.circular(20),
+            //   bottomRight: Radius.circular(20),
+            // )),
           //   height: 60,
           //   color: primaryColor,
           //   child: const Text('swipe right to execute the treatment',
