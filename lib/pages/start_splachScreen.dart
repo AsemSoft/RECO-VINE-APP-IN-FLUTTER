@@ -19,7 +19,7 @@ class _StrartSplachScreenState extends State<StrartSplachScreen> {
 
   Widget build(BuildContext context) {
     return  SplashScreenView(
-        navigateRoute: MainPage(),
+        navigateRoute: MyApp(),
         duration:5000 ,
         imageSize: 250,
         imageSrc:"images/started page.png",

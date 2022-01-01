@@ -7,6 +7,7 @@ import 'package:smart_test/pages/p_view.dart';
 import 'package:smart_test/pages/result_page.dart';
 import 'package:smart_test/pages/search.dart';
 import 'package:smart_test/pages/start_splachScreen.dart';
+import 'package:smart_test/provider/screen.dart';
 import 'package:smart_test/service/themeService.dart';
 import 'package:get/get.dart';
 import 'package:smart_test/test.dart';
@@ -23,13 +24,16 @@ void main() async {
   SharedPreferences pref = await SharedPreferences.getInstance();
   bool? decision = pref.getBool('x');
 
-  Widget screen = (decision == true || decision == null) ?  PView() : MyApp();
+  Widget screen = (decision == true || decision == null) ? PView() : MyApp();
 
-  runApp(MyApp());
+  runApp(screen);
 }
 
 class MyApp extends StatelessWidget {
+
   Widget build(BuildContext context) {
+
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<AddFile>(
@@ -42,9 +46,7 @@ class MyApp extends StatelessWidget {
         theme: Themes.lightMode,
         darkTheme: Themes.darkMode,
         themeMode: ThemeService().theme,
-        home: StrartSplachScreen()  ,
-
-
+        home:MainPage(),
       ),
     );
   }
