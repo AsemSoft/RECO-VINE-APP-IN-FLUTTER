@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Smart Test',
+        title: 'RECO VINE',
         theme: Themes.lightMode,
         darkTheme: Themes.darkMode,
         themeMode: ThemeService().theme,
