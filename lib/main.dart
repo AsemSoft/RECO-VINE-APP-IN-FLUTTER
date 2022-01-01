@@ -4,8 +4,10 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_test/pages/main_page.dart';
 import 'package:smart_test/pages/p_view.dart';
+import 'package:smart_test/pages/start_splachScreen.dart';
 import 'package:smart_test/service/themeService.dart';
 import 'package:get/get.dart';
+import 'package:splash_screen_view/SplashScreenView.dart';
 import 'UI/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,20 +33,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<AddFile>(
-          create: (_) => AddFile(),
-        ),
-      ],
-      child: GetMaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'RECON VINE',
         theme: Themes.lightMode,
         darkTheme: Themes.darkMode,
         themeMode: ThemeService().theme,
-        home:const MainPage(),
-      ),
-    );
+        home:   StrartSplachScreen(),
+   );
   }
 }

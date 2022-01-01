@@ -51,16 +51,23 @@ class _MainDrawerState extends State<MainDrawer> {
             leading: Icon(Icons.save),
             iconColor: Colors.green,
           ),
+
           ListTile(
+
             onTap: () {
+
+
               setState(() {
                 ThemeService().switchTheme();
+                setState(() {
+
+                });
               });
             },
+
             title: Get.isDarkMode ? Text("Light Mode") : Text(" Dark Mode"),
-            leading: Icon(
-              Get.isDarkMode ? Icons.wb_sunny_outlined : Icons.nightlight_round,
-            ),
+            leading:Icon( Get.isDarkMode ? Icons.wb_sunny_outlined : Icons.nightlight_round),
+
             iconColor: Colors.green,
           ),
           ListTile(

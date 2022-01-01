@@ -89,7 +89,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    
     return  Scaffold(
         appBar: AppBar(
           actions: [
@@ -130,16 +129,16 @@ class _MainPageState extends State<MainPage> {
                         width: 100,
                         child: img == null
                             ? ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: Image.asset('images/leaf.png',
-                                    fit: BoxFit.fill, color: Colors.white))
+                            borderRadius: BorderRadius.circular(30),
+                            child: Image.asset('images/leaf.png',
+                                fit: BoxFit.fill, color: Colors.white))
                             : ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: Image.file(
-                                  img!,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                          borderRadius: BorderRadius.circular(30),
+                          child: Image.file(
+                            img!,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(left: 20, right: 46),
@@ -154,11 +153,11 @@ class _MainPageState extends State<MainPage> {
                         color: primaryColor,
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(15),
-                          topLeft: Radius.circular(15),
-                          bottomLeft: Radius.circular(15),
-                          bottomRight: Radius.circular(15),
-                        )),
+                              topRight: Radius.circular(15),
+                              topLeft: Radius.circular(15),
+                              bottomLeft: Radius.circular(15),
+                              bottomRight: Radius.circular(15),
+                            )),
                         enableFeedback: disable,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -184,7 +183,7 @@ class _MainPageState extends State<MainPage> {
                                       leading: const Icon(Icons.image),
                                       title: const Text('gallery'),
                                       onTap: () {
-                                        // Image
+                                        // Images
                                         getImage(ImageSource.gallery);
                                         Navigator.pop(context);
                                       },
@@ -231,16 +230,16 @@ class _MainPageState extends State<MainPage> {
                         width: 100,
                         child: img2 == null
                             ? ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: Image.asset('images/leaf.png',
-                                    fit: BoxFit.fill, color: Colors.white))
+                            borderRadius: BorderRadius.circular(30),
+                            child: Image.asset('images/leaf.png',
+                                fit: BoxFit.fill, color: Colors.white))
                             : ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: Image.file(
-                                  img2!,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                          borderRadius: BorderRadius.circular(30),
+                          child: Image.file(
+                            img2!,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(left: 20, right: 46),
@@ -255,11 +254,11 @@ class _MainPageState extends State<MainPage> {
                         color: primaryColor,
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(15),
-                          topLeft: Radius.circular(15),
-                          bottomLeft: Radius.circular(15),
-                          bottomRight: Radius.circular(15),
-                        )),
+                              topRight: Radius.circular(15),
+                              topLeft: Radius.circular(15),
+                              bottomLeft: Radius.circular(15),
+                              bottomRight: Radius.circular(15),
+                            )),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
@@ -330,16 +329,16 @@ class _MainPageState extends State<MainPage> {
                         width: 100,
                         child: img3 == null
                             ? ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: Image.asset('images/leaf.png',
-                                    fit: BoxFit.fill, color: Colors.white))
+                            borderRadius: BorderRadius.circular(30),
+                            child: Image.asset('images/leaf.png',
+                                fit: BoxFit.fill, color: Colors.white))
                             : ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: Image.file(
-                                  img3!,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                          borderRadius: BorderRadius.circular(30),
+                          child: Image.file(
+                            img3!,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(left: 20, right: 46),
@@ -354,11 +353,11 @@ class _MainPageState extends State<MainPage> {
                         color: primaryColor,
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(15),
-                          topLeft: Radius.circular(15),
-                          bottomLeft: Radius.circular(15),
-                          bottomRight: Radius.circular(15),
-                        )),
+                              topRight: Radius.circular(15),
+                              topLeft: Radius.circular(15),
+                              bottomLeft: Radius.circular(15),
+                              bottomRight: Radius.circular(15),
+                            )),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
@@ -429,16 +428,16 @@ class _MainPageState extends State<MainPage> {
                         width: 100,
                         child: img4 == null
                             ? ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: Image.asset('images/leaf.png',
-                                    fit: BoxFit.fill, color: Colors.white))
+                            borderRadius: BorderRadius.circular(30),
+                            child: Image.asset('images/leaf.png',
+                                fit: BoxFit.fill, color: Colors.white))
                             : ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: Image.file(
-                                  img4!,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                          borderRadius: BorderRadius.circular(30),
+                          child: Image.file(
+                            img4!,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(left: 20, right: 46),
@@ -453,11 +452,11 @@ class _MainPageState extends State<MainPage> {
                         color: primaryColor,
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(15),
-                          topLeft: Radius.circular(15),
-                          bottomLeft: Radius.circular(15),
-                          bottomRight: Radius.circular(15),
-                        )),
+                              topRight: Radius.circular(15),
+                              topLeft: Radius.circular(15),
+                              bottomLeft: Radius.circular(15),
+                              bottomRight: Radius.circular(15),
+                            )),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
@@ -528,16 +527,16 @@ class _MainPageState extends State<MainPage> {
                         width: 100,
                         child: img5 == null
                             ? ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: Image.asset('images/leaf.png',
-                                    fit: BoxFit.fill, color: Colors.white))
+                            borderRadius: BorderRadius.circular(30),
+                            child: Image.asset('images/leaf.png',
+                                fit: BoxFit.fill, color: Colors.white))
                             : ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: Image.file(
-                                  img5!,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                          borderRadius: BorderRadius.circular(30),
+                          child: Image.file(
+                            img5!,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(left: 20, right: 46),
@@ -552,11 +551,11 @@ class _MainPageState extends State<MainPage> {
                         color: primaryColor,
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(15),
-                          topLeft: Radius.circular(15),
-                          bottomLeft: Radius.circular(15),
-                          bottomRight: Radius.circular(15),
-                        )),
+                              topRight: Radius.circular(15),
+                              topLeft: Radius.circular(15),
+                              bottomLeft: Radius.circular(15),
+                              bottomRight: Radius.circular(15),
+                            )),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
@@ -616,89 +615,90 @@ class _MainPageState extends State<MainPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: MaterialButton(
-                      color: primaryColor,
-                      minWidth: MediaQuery.of(context).size.width * .9,
-                      padding: const EdgeInsets.all(10),
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
+                  color: primaryColor,
+                  minWidth: MediaQuery
+                      .of(context)
+                      .size
+                      .width * .9,
+                  padding: const EdgeInsets.all(10),
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
                         topRight: Radius.circular(20),
                         topLeft: Radius.circular(20),
                         bottomLeft: Radius.circular(20),
                         bottomRight: Radius.circular(20),
                       )),
-                      height: 60,
-                      child: Text(
-                        "Swipe To Execute",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
+                  height: 60,
+                  child: Text(
+                    "Swipe To Execute",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
 
-                      onPressed: () async {
-                        print(imageFile);
-                        AddFile imageFile1 =
-                            Provider.of<AddFile>(context, listen: false);
-                        await imageFile1.addImage(imageFile);
-                        if (imageFile1.imageFile.length >= 3) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ResultPage(),
-                              ));
-                        } else if (imageFile1.imageFile.length == 0) {
-                          Get.defaultDialog(
-                            title: "Error",
-                            middleText: "No Image selected ",
-                            backgroundColor: primaryColor,
-                            titleStyle: TextStyle(color: Colors.red),
-                            middleTextStyle: TextStyle(color: Colors.white),
-                            textCancel: "Cancel",
-                            cancelTextColor: Colors.white,
-                            buttonColor: Colors.white,
-                            barrierDismissible: false,
-                            radius: 30,
-                          );
-                        } else {
-                          Get.defaultDialog(
-                            title: "Error",
-                            middleText: "Image selected is less than two ",
-                            backgroundColor: primaryColor,
-                            titleStyle: TextStyle(color: Colors.red),
-                            middleTextStyle: TextStyle(color: Colors.white),
-                            textCancel: "Cancel",
-                            cancelTextColor: Colors.white,
-                            buttonColor: Colors.white,
-                            barrierDismissible: false,
-                            radius: 30,
-                          );
+                  onPressed: () async {
+                    print(imageFile);
+                    AddFile imageFile1 =
+                    Provider.of<AddFile>(context, listen: false);
+                    await imageFile1.addImage(imageFile);
+                    if (imageFile1.imageFile.length >= 3) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResultPage(),
+                          ));
+                    } else if (imageFile1.imageFile.length == 0) {
+                      Get.defaultDialog(
+                        title: "Error",
+                        middleText: "No Image selected ",
+                        backgroundColor: primaryColor,
+                        titleStyle: TextStyle(color: Colors.red),
+                        middleTextStyle: TextStyle(color: Colors.white),
+                        textCancel: "Cancel",
+                        cancelTextColor: Colors.white,
+                        buttonColor: Colors.white,
 
-                          // snakbar we can delete
-                          // Get.snackbar(
-                          // 'Error',
-                          // 'Image Selected less than two',
-                          // snackPosition: SnackPosition.BOTTOM,
-                          // colorText: Colors.red,
-                          // leftBarIndicatorColor: Colors.red,
-                          // backgroundColor: Colors.white,
-                          // icon: Icon(
-                          // Icons.error,
-                          // color: Colors.red,
-                          // ),
-                          // );
-                        }
-                      },
-    ),
-    ),
+                        radius: 30,
+                      );
+                    } else {
+                      Get.defaultDialog(
+                        title: "Error",
+                        middleText: "Image selected is less than two ",
+                        backgroundColor: primaryColor,
+                        titleStyle: TextStyle(color: Colors.red),
+                        middleTextStyle: TextStyle(color: Colors.white),
+                        textCancel: "Cancel",
+                        cancelTextColor: Colors.white,
+                        buttonColor: Colors.white,
 
+                        radius: 30,
+                      );
 
-
+                      // snakbar we can delete
+                      // Get.snackbar(
+                      // 'Error',
+                      // 'Image Selected less than two',
+                      // snackPosition: SnackPosition.BOTTOM,
+                      // colorText: Colors.red,
+                      // leftBarIndicatorColor: Colors.red,
+                      // backgroundColor: Colors.white,
+                      // icon: Icon(
+                      // Icons.error,
+                      // color: Colors.red,
+                      // ),
+                      // );
+                    }
+                  },
+                ),
+              ),
 
 
             ],
           ),
         ),
-      );
-
+    );
   }
+
+
 }
