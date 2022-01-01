@@ -81,7 +81,7 @@ class _MainDrawerState extends State<MainDrawer> {
           ),
           ListTile(
             onTap: () =>SystemNavigator.pop(),
-            title: Text("Exit"),
+            title: Text("Exit "),
             leading: Icon(Icons.exit_to_app),
             iconColor: Colors.green,
           ),
