@@ -8,9 +8,10 @@ import 'package:smart_test/UI/theme.dart';
 import 'package:smart_test/pages/result_page.dart';
 import 'package:smart_test/provider/add_file.dart';
 import 'package:smart_test/widgets/drawer.dart';
-import 'package:swipebuttonflutter/swipebuttonflutter.dart';
 
 class MainPage extends StatefulWidget {
+  static String id = "MainPage";
+
   const MainPage({Key? key}) : super(key: key);
 
   @override
@@ -88,660 +89,623 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MainPage(),
-                    ));
-              },
-              icon: Icon(Icons.home),
+    
+    return  MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AddFile>(
+          create: (context) => AddFile(),
+        ),
+      ],
+      child: Scaffold(
+          appBar: AppBar(
+            actions: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MainPage(),
+                      ));
+                },
+                icon: Icon(Icons.home),
+              ),
+            ],
+            title: Text("Main Page"),
+            centerTitle: true,
+          ),
+          drawer: Drawer(
+            child: MainDrawer(),
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Container(
+                    margin: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.lightGreen,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    padding: const EdgeInsets.all(5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          height: 90,
+                          width: 100,
+                          child: img == null
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Image.asset('images/leaf.png',
+                                      fit: BoxFit.fill, color: Colors.white))
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Image.file(
+                                    img!,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 20, right: 46),
+                          child: Text(
+                            'image 1',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                        ),
+                        MaterialButton(
+                          minWidth: 100,
+                          color: primaryColor,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(15),
+                            topLeft: Radius.circular(15),
+                            bottomLeft: Radius.circular(15),
+                            bottomRight: Radius.circular(15),
+                          )),
+                          enableFeedback: disable,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const <Widget>[
+                              Text(
+                                'Add',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Icon(Icons.add, color: Colors.white),
+                            ],
+                          ),
+                          onPressed: () {
+                            var ad = AlertDialog(
+                              title: const Text('Choose an image'),
+                              content: Container(
+                                height: 150,
+                                child: Column(
+                                  children: [
+                                    const Divider(color: Colors.black),
+                                    Container(
+                                      color: Colors.teal,
+                                      child: ListTile(
+                                        leading: const Icon(Icons.image),
+                                        title: const Text('gallery'),
+                                        onTap: () {
+                                          // Image
+                                          getImage(ImageSource.gallery);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Container(
+                                      color: Colors.teal,
+                                      child: ListTile(
+                                        leading: const Icon(Icons.image),
+                                        title: const Text('Camera'),
+                                        onTap: () {
+                                          getImage(ImageSource.camera);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                            showDialog(
+                                context: context, builder: (context) => ad);
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Container(
+                    margin: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.lightGreen,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    padding: const EdgeInsets.all(5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          height: 90,
+                          width: 100,
+                          child: img2 == null
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Image.asset('images/leaf.png',
+                                      fit: BoxFit.fill, color: Colors.white))
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Image.file(
+                                    img2!,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 20, right: 46),
+                          child: Text(
+                            'image 2',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                        ),
+                        MaterialButton(
+                          minWidth: 100,
+                          color: primaryColor,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(15),
+                            topLeft: Radius.circular(15),
+                            bottomLeft: Radius.circular(15),
+                            bottomRight: Radius.circular(15),
+                          )),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const <Widget>[
+                              Text(
+                                'Add',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Icon(Icons.add, color: Colors.white),
+                            ],
+                          ),
+                          onPressed: () {
+                            var ad = AlertDialog(
+                              title: const Text('Choose an image'),
+                              content: Container(
+                                height: 150,
+                                child: Column(
+                                  children: [
+                                    const Divider(color: Colors.black),
+                                    Container(
+                                      color: Colors.teal,
+                                      child: ListTile(
+                                        leading: const Icon(Icons.image),
+                                        title: const Text('gallery'),
+                                        onTap: () {
+                                          getImage2(ImageSource.gallery);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Container(
+                                      color: Colors.teal,
+                                      child: ListTile(
+                                        leading: const Icon(Icons.image),
+                                        title: const Text('Camera'),
+                                        onTap: () {
+                                          getImage2(ImageSource.camera);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                            showDialog(
+                                context: context, builder: (context) => ad);
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Container(
+                    margin: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.lightGreen,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    padding: const EdgeInsets.all(5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          height: 90,
+                          width: 100,
+                          child: img3 == null
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Image.asset('images/leaf.png',
+                                      fit: BoxFit.fill, color: Colors.white))
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Image.file(
+                                    img3!,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 20, right: 46),
+                          child: Text(
+                            'image 3',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                        ),
+                        MaterialButton(
+                          minWidth: 100,
+                          color: primaryColor,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(15),
+                            topLeft: Radius.circular(15),
+                            bottomLeft: Radius.circular(15),
+                            bottomRight: Radius.circular(15),
+                          )),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const <Widget>[
+                              Text(
+                                'Add',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Icon(Icons.add, color: Colors.white),
+                            ],
+                          ),
+                          onPressed: () {
+                            var ad = AlertDialog(
+                              title: const Text('Choose an image'),
+                              content: Container(
+                                height: 150,
+                                child: Column(
+                                  children: [
+                                    Divider(color: Colors.black),
+                                    Container(
+                                      color: Colors.teal,
+                                      child: ListTile(
+                                        leading: Icon(Icons.image),
+                                        title: const Text('gallery'),
+                                        onTap: () {
+                                          getImage3(ImageSource.gallery);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ),
+                                    SizedBox(height: 8),
+                                    Container(
+                                      color: Colors.teal,
+                                      child: ListTile(
+                                        leading: Icon(Icons.image),
+                                        title: const Text('Camera'),
+                                        onTap: () {
+                                          getImage3(ImageSource.camera);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                            showDialog(
+                                context: context, builder: (context) => ad);
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Container(
+                    margin: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.lightGreen,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    padding: const EdgeInsets.all(5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          height: 90,
+                          width: 100,
+                          child: img4 == null
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Image.asset('images/leaf.png',
+                                      fit: BoxFit.fill, color: Colors.white))
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Image.file(
+                                    img4!,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 20, right: 46),
+                          child: Text(
+                            'image 4',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                        ),
+                        MaterialButton(
+                          minWidth: 100,
+                          color: primaryColor,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(15),
+                            topLeft: Radius.circular(15),
+                            bottomLeft: Radius.circular(15),
+                            bottomRight: Radius.circular(15),
+                          )),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const <Widget>[
+                              Text(
+                                'Add',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Icon(Icons.add, color: Colors.white),
+                            ],
+                          ),
+                          onPressed: () {
+                            var ad = AlertDialog(
+                              title: const Text('Choose an image'),
+                              content: Container(
+                                height: 150,
+                                child: Column(
+                                  children: [
+                                    Divider(color: Colors.black),
+                                    Container(
+                                      color: Colors.teal,
+                                      child: ListTile(
+                                        leading: const Icon(Icons.image),
+                                        title: const Text('gallery'),
+                                        onTap: () {
+                                          getImage4(ImageSource.gallery);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Container(
+                                      color: Colors.teal,
+                                      child: ListTile(
+                                        leading: Icon(Icons.image),
+                                        title: const Text('Camera'),
+                                        onTap: () {
+                                          getImage4(ImageSource.camera);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                            showDialog(
+                                context: context, builder: (context) => ad);
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Container(
+                    margin: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.lightGreen,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    padding: const EdgeInsets.all(5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          height: 90,
+                          width: 100,
+                          child: img5 == null
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Image.asset('images/leaf.png',
+                                      fit: BoxFit.fill, color: Colors.white))
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Image.file(
+                                    img5!,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 20, right: 46),
+                          child: Text(
+                            'image 5',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                        ),
+                        MaterialButton(
+                          minWidth: 100,
+                          color: primaryColor,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(15),
+                            topLeft: Radius.circular(15),
+                            bottomLeft: Radius.circular(15),
+                            bottomRight: Radius.circular(15),
+                          )),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const <Widget>[
+                              Text(
+                                'Add',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Icon(Icons.add, color: Colors.white),
+                            ],
+                          ),
+                          onPressed: () {
+                            var ad = AlertDialog(
+                              title: const Text('Choose an image'),
+                              content: Container(
+                                height: 150,
+                                child: Column(
+                                  children: [
+                                    const Divider(color: Colors.black),
+                                    Container(
+                                      color: Colors.teal,
+                                      child: ListTile(
+                                        leading: const Icon(Icons.image),
+                                        title: const Text('gallery'),
+                                        onTap: () {
+                                          getImage5(ImageSource.gallery);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Container(
+                                      color: Colors.teal,
+                                      child: ListTile(
+                                        leading: const Icon(Icons.image),
+                                        title: const Text('Camera'),
+                                        onTap: () {
+                                          getImage5(ImageSource.camera);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                            showDialog(
+                                context: context, builder: (context) => ad);
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: MaterialButton(
+                        color: primaryColor,
+                        minWidth: MediaQuery.of(context).size.width * .9,
+                        padding: const EdgeInsets.all(10),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          topLeft: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        )),
+                        height: 60,
+                        child: Text(
+                          "Swipe To Execute",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+
+                        onPressed: () async {
+                          print(imageFile);
+                          AddFile imageFile1 =
+                              Provider.of<AddFile>(context, listen: false);
+                          await imageFile1.addImage(imageFile);
+                          if (imageFile1.imageFile.length >= 3) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ResultPage(),
+                                ));
+                          } else if (imageFile1.imageFile.length == 0) {
+                            Get.defaultDialog(
+                              title: "Error",
+                              middleText: "No Image selected ",
+                              backgroundColor: primaryColor,
+                              titleStyle: TextStyle(color: Colors.red),
+                              middleTextStyle: TextStyle(color: Colors.white),
+                              textCancel: "Cancel",
+                              cancelTextColor: Colors.white,
+                              buttonColor: Colors.white,
+                              barrierDismissible: false,
+                              radius: 30,
+                            );
+                          } else {
+                            Get.defaultDialog(
+                              title: "Error",
+                              middleText: "Image selected is less than two ",
+                              backgroundColor: primaryColor,
+                              titleStyle: TextStyle(color: Colors.red),
+                              middleTextStyle: TextStyle(color: Colors.white),
+                              textCancel: "Cancel",
+                              cancelTextColor: Colors.white,
+                              buttonColor: Colors.white,
+                              barrierDismissible: false,
+                              radius: 30,
+                            );
+
+                            // snakbar we can delete
+                            // Get.snackbar(
+                            // 'Error',
+                            // 'Image Selected less than two',
+                            // snackPosition: SnackPosition.BOTTOM,
+                            // colorText: Colors.red,
+                            // leftBarIndicatorColor: Colors.red,
+                            // backgroundColor: Colors.white,
+                            // icon: Icon(
+                            // Icons.error,
+                            // color: Colors.red,
+                            // ),
+                            // );
+                          }
+                        },
+      ),
+      ),
+
+
+
+
+
+              ],
             ),
-          ],
-          title: Text("Main Page"),
-          centerTitle: true,
-        ),
-        drawer: Drawer(
-          child: MainDrawer(),
-        ),
-        body:
-        SingleChildScrollView(
-          child: Column(
-          children: <Widget>[
-          Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: Container(
-          margin: EdgeInsets.all(5),
-          decoration: BoxDecoration(
-          color: Colors.lightGreen,
-          borderRadius: BorderRadius.circular(20),
-          ),
-          padding: const EdgeInsets.all(5),
-          child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-          Container(
-          height: 90,
-          width: 100,
-          child: img == null
-          ? ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: Image.asset('images/leaf.png',
-          fit: BoxFit.fill, color: Colors.white))
-              : ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: Image.file(
-          img!,
-          fit: BoxFit.cover,
-          ),
-          ),
-          ),
-          const Padding(
-          padding: EdgeInsets.only(left: 20, right: 46),
-          child: Text(
-          'image 1',
-          style: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 18),
-          ),
-          ),
-          MaterialButton(
-          minWidth: 100,
-          color: primaryColor,
-          shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-          topRight: Radius.circular(15),
-          topLeft: Radius.circular(15),
-          bottomLeft: Radius.circular(15),
-          bottomRight: Radius.circular(15),
-          )),
-          enableFeedback: disable,
-          child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-          Text(
-          'Add',
-          style: TextStyle(color: Colors.white),
-          ),
-          Icon(Icons.add, color: Colors.white),
-          ],
-          ),
-          onPressed: () {
-          var ad = AlertDialog(
-          title: const Text('Choose an image'),
-          content: Container(
-          height: 150,
-          child: Column(
-          children: [
-          const Divider(color: Colors.black),
-          Container(
-          color: Colors.teal,
-          child: ListTile(
-          leading: const Icon(Icons.image),
-          title: const Text('gallery'),
-          onTap: () {
-          getImage(ImageSource.gallery);
-          Navigator.pop(context);
-          },
-          ),
-          ),
-          const SizedBox(height: 8),
-          Container(
-          color: Colors.teal,
-          child: ListTile(
-          leading: const Icon(Icons.image),
-          title: const Text('Camera'),
-          onTap: () {
-          getImage(ImageSource.camera);
-          Navigator.pop(context);
-          },
-          ),
-          ),
-          ],
-          ),
-          ),
-          );
-          showDialog(
-          context: context, builder: (context) => ad);
-          },
-          )
-          ],
-          ),
-          ),
-          ),
-          Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: Container(
-          margin: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-          color: Colors.lightGreen,
-          borderRadius: BorderRadius.circular(20),
-          ),
-          padding: const EdgeInsets.all(5),
-          child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-          Container(
-          height: 90,
-          width: 100,
-          child: img2 == null
-          ? ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: Image.asset('images/leaf.png',
-          fit: BoxFit.fill, color: Colors.white))
-              : ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: Image.file(
-          img2!,
-          fit: BoxFit.cover,
-          ),
-          ),
-          ),
-          const Padding(
-          padding: EdgeInsets.only(left: 20, right: 46),
-          child: Text(
-          'image 2',
-          style: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 18),
-          ),
-          ),
-          MaterialButton(
-          minWidth: 100,
-          color: primaryColor,
-          shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-          topRight: Radius.circular(15),
-          topLeft: Radius.circular(15),
-          bottomLeft: Radius.circular(15),
-          bottomRight: Radius.circular(15),
-          )),
-          child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-          Text(
-          'Add',
-          style: TextStyle(color: Colors.white),
-          ),
-          Icon(Icons.add, color: Colors.white),
-          ],
-          ),
-          onPressed: () {
-          var ad = AlertDialog(
-          title: const Text('Choose an image'),
-          content: Container(
-          height: 150,
-          child: Column(
-          children: [
-          const Divider(color: Colors.black),
-          Container(
-          color: Colors.teal,
-          child: ListTile(
-          leading: const Icon(Icons.image),
-          title: const Text('gallery'),
-          onTap: () {
-          getImage2(ImageSource.gallery);
-          Navigator.pop(context);
-          },
-          ),
-          ),
-          const SizedBox(height: 8),
-          Container(
-          color: Colors.teal,
-          child: ListTile(
-          leading: const Icon(Icons.image),
-          title: const Text('Camera'),
-          onTap: () {
-          getImage2(ImageSource.camera);
-          Navigator.pop(context);
-          },
-          ),
-          ),
-          ],
-          ),
-          ),
-          );
-          showDialog(
-          context: context, builder: (context) => ad);
-          },
-          )
-          ],
-          ),
-          ),
-          ),
-          Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: Container(
-          margin: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-          color: Colors.lightGreen,
-          borderRadius: BorderRadius.circular(20),
-          ),
-          padding: const EdgeInsets.all(5),
-          child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-          Container(
-          height: 90,
-          width: 100,
-          child: img3 == null
-          ? ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: Image.asset('images/leaf.png',
-          fit: BoxFit.fill, color: Colors.white))
-              : ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: Image.file(
-          img3!,
-          fit: BoxFit.cover,
-          ),
-          ),
-          ),
-          const Padding(
-          padding: EdgeInsets.only(left: 20, right: 46),
-          child: Text(
-          'image 3',
-          style: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 18),
-          ),
-          ),
-          MaterialButton(
-          minWidth: 100,
-          color: primaryColor,
-          shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-          topRight: Radius.circular(15),
-          topLeft: Radius.circular(15),
-          bottomLeft: Radius.circular(15),
-          bottomRight: Radius.circular(15),
-          )),
-          child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-          Text(
-          'Add',
-          style: TextStyle(color: Colors.white),
-          ),
-          Icon(Icons.add, color: Colors.white),
-          ],
-          ),
-          onPressed: () {
-          var ad = AlertDialog(
-          title: const Text('Choose an image'),
-          content: Container(
-          height: 150,
-          child: Column(
-          children: [
-          Divider(color: Colors.black),
-          Container(
-          color: Colors.teal,
-          child: ListTile(
-          leading: Icon(Icons.image),
-          title: const Text('gallery'),
-          onTap: () {
-          getImage3(ImageSource.gallery);
-          Navigator.pop(context);
-          },
-          ),
-          ),
-          SizedBox(height: 8),
-          Container(
-          color: Colors.teal,
-          child: ListTile(
-          leading: Icon(Icons.image),
-          title: const Text('Camera'),
-          onTap: () {
-          getImage3(ImageSource.camera);
-          Navigator.pop(context);
-          },
-          ),
-          ),
-          ],
-          ),
-          ),
-          );
-          showDialog(
-          context: context, builder: (context) => ad);
-          },
-          )
-          ],
-          ),
-          ),
-          ),
-          Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: Container(
-          margin: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-          color: Colors.lightGreen,
-          borderRadius: BorderRadius.circular(20),
-          ),
-          padding: const EdgeInsets.all(5),
-          child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-          Container(
-          height: 90,
-          width: 100,
-          child: img4 == null
-          ? ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: Image.asset('images/leaf.png',
-          fit: BoxFit.fill, color: Colors.white))
-              : ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: Image.file(
-          img4!,
-          fit: BoxFit.cover,
-          ),
-          ),
-          ),
-          const Padding(
-          padding: EdgeInsets.only(left: 20, right: 46),
-          child: Text(
-          'image 4',
-          style: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 18),
-          ),
-          ),
-          MaterialButton(
-          minWidth: 100,
-          color: primaryColor,
-          shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-          topRight: Radius.circular(15),
-          topLeft: Radius.circular(15),
-          bottomLeft: Radius.circular(15),
-          bottomRight: Radius.circular(15),
-          )),
-          child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-          Text(
-          'Add',
-          style: TextStyle(color: Colors.white),
-          ),
-          Icon(Icons.add, color: Colors.white),
-          ],
-          ),
-          onPressed: () {
-          var ad = AlertDialog(
-          title: const Text('Choose an image'),
-          content: Container(
-          height: 150,
-          child: Column(
-          children: [
-          Divider(color: Colors.black),
-          Container(
-          color: Colors.teal,
-          child: ListTile(
-          leading: const Icon(Icons.image),
-          title: const Text('gallery'),
-          onTap: () {
-          getImage4(ImageSource.gallery);
-          Navigator.pop(context);
-          },
-          ),
-          ),
-          const SizedBox(height: 8),
-          Container(
-          color: Colors.teal,
-          child: ListTile(
-          leading: Icon(Icons.image),
-          title: const Text('Camera'),
-          onTap: () {
-          getImage4(ImageSource.camera);
-          Navigator.pop(context);
-          },
-          ),
-          ),
-          ],
-          ),
-          ),
-          );
-          showDialog(
-          context: context, builder: (context) => ad);
-          },
-          )
-          ],
-          ),
-          ),
-          ),
-          Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: Container(
-          margin: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-          color: Colors.lightGreen,
-          borderRadius: BorderRadius.circular(20),
-          ),
-          padding: const EdgeInsets.all(5),
-          child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-          Container(
-          height: 90,
-          width: 100,
-          child: img5 == null
-          ? ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: Image.asset('images/leaf.png',
-          fit: BoxFit.fill, color: Colors.white))
-              : ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: Image.file(
-          img5!,
-          fit: BoxFit.cover,
-          ),
-          ),
-          ),
-          const Padding(
-          padding: EdgeInsets.only(left: 20, right: 46),
-          child: Text(
-          'image 5',
-          style: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 18),
-          ),
-          ),
-          MaterialButton(
-          minWidth: 100,
-          color: primaryColor,
-          shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-          topRight: Radius.circular(15),
-          topLeft: Radius.circular(15),
-          bottomLeft: Radius.circular(15),
-          bottomRight: Radius.circular(15),
-          )),
-          child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-          Text(
-          'Add',
-          style: TextStyle(color: Colors.white),
-          ),
-          Icon(Icons.add, color: Colors.white),
-          ],
-          ),
-          onPressed: () {
-          var ad = AlertDialog(
-          title: const Text('Choose an image'),
-          content: Container(
-          height: 150,
-          child: Column(
-          children: [
-          const Divider(color: Colors.black),
-          Container(
-          color: Colors.teal,
-          child: ListTile(
-          leading: const Icon(Icons.image),
-          title: const Text('gallery'),
-          onTap: () {
-          getImage5(ImageSource.gallery);
-          Navigator.pop(context);
-          },
-          ),
-          ),
-          const SizedBox(height: 8),
-          Container(
-          color: Colors.teal,
-          child: ListTile(
-          leading: const Icon(Icons.image),
-          title: const Text('Camera'),
-          onTap: () {
-          getImage5(ImageSource.camera);
-          Navigator.pop(context);
-          },
-          ),
-          ),
-          ],
-          ),
-          ),
-          );
-          showDialog(
-          context: context, builder: (context) => ad);
-          },
-          )
-          ],
-          ),
-          ),
-          ),
-          const SizedBox(
-          height: 15,
-          ),
-          Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: MaterialButton(
-          color: primaryColor,
-            minWidth: MediaQuery.of(context).size.width * .9,
-            padding: const EdgeInsets.all(10),
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(20),
-                  topLeft: Radius.circular(20),
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                )),
-          height: 60,
-          child: Text("Swipe To Execute", style: TextStyle(color: Colors.white ,fontSize: 20,fontWeight: FontWeight.bold),),
-          /*iconColor: primaryColor,
-          swipeButtonColor: Colors.white,
-          backgroundColor: primaryColor,
-          text: "swipe right to execute ",
-          buttonTextStyle: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-          color: primaryColor,
-          ),*/
-          onPressed: () async {
-          print(imageFile);
-          AddFile imageFile1 =
-          Provider.of<AddFile>(context, listen: false);
-          await imageFile1.addImage(imageFile);
-          if (imageFile1.imageFile.length >= 3) {
-          Navigator.push(
-          context,
-          MaterialPageRoute(
-          builder: (context) => ResultPage(),
-          ));
-          }else if(imageFile1.imageFile.length == 0){
-            Get.defaultDialog(
-              title: "Error",
-              middleText: "No Image selected ",
-              backgroundColor: primaryColor,
-              titleStyle: TextStyle(color: Colors.red),
-              middleTextStyle: TextStyle(color: Colors.white),
-              textCancel: "Cancel",
-              cancelTextColor: Colors.white,
-              buttonColor: Colors.white,
-              barrierDismissible: false,
-              radius: 30,
-            );
-
-          }
-          else {
-          Get.defaultDialog(
-            title: "Error",
-            middleText: "Image selected is less than two ",
-            backgroundColor: primaryColor,
-            titleStyle: TextStyle(color: Colors.red),
-            middleTextStyle: TextStyle(color: Colors.white),
-            textCancel: "Cancel",
-            cancelTextColor: Colors.white,
-            buttonColor: Colors.white,
-            barrierDismissible: false,
-            radius: 30,
-
-          );
-
-          // snakbar we can delete
-          // Get.snackbar(
-          // 'Error',
-          // 'Image Selected less than two',
-          // snackPosition: SnackPosition.BOTTOM,
-          // colorText: Colors.red,
-          // leftBarIndicatorColor: Colors.red,
-          // backgroundColor: Colors.white,
-          // icon: Icon(
-          // Icons.error,
-          // color: Colors.red,
-          // ),
-          // );
-          }
-          },
-          ),
-          ),
-
-          // MaterialButton(
-
-            // minWidth: MediaQuery.of(context).size.width * .9,
-            // padding: const EdgeInsets.all(10),
-            // shape: const RoundedRectangleBorder(
-            //     borderRadius: BorderRadius.only(
-            //   topRight: Radius.circular(20),
-            //   topLeft: Radius.circular(20),
-            //   bottomLeft: Radius.circular(20),
-            //   bottomRight: Radius.circular(20),
-            // )),
-          //   height: 60,
-          //   color: primaryColor,
-          //   child: const Text('swipe right to execute the treatment',
-          //       style: TextStyle(
-          //           fontWeight: FontWeight.bold,
-          //           fontSize: 16,
-          //           color: Colors.white)),
-          //   onPressed: () async {
-          //     print(imageFile);
-          //     AddFile imageFile1 =
-          //         Provider.of<AddFile>(context, listen: false);
-          //     await imageFile1.addImage(imageFile);
-          //     if (imageFile1.imageFile.length >= 3) {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //             builder: (context) => ResultPage(),
-          //           ));
-          //     } else {
-          //       Get.snackbar(
-          //         'Error',
-          //         'Image Selected less than two',
-          //         snackPosition: SnackPosition.BOTTOM,
-          //         colorText: Colors.red,
-          //         leftBarIndicatorColor: Colors.red,
-          //         backgroundColor: Colors.white,
-          //         icon: Icon(
-          //           Icons.error,
-          //           color: Colors.red,
-          //         ),
-          //       );
-          //     }
-          //   },
-          // ),
-          ],
           ),
         ),
     );
+
   }
 }

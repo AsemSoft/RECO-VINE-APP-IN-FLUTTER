@@ -6,6 +6,7 @@ import 'package:smart_test/service/themeService.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 
 class StrartSplachScreen extends StatefulWidget {
+  static String id = "StrartSplachScreen";
   const StrartSplachScreen({Key? key}) : super(key: key);
 
   @override
@@ -13,7 +14,9 @@ class StrartSplachScreen extends StatefulWidget {
 }
 
 class _StrartSplachScreenState extends State<StrartSplachScreen> {
+  // static String id = "StrartSplachScreen";
   @override
+
   Widget build(BuildContext context) {
     return  SplashScreenView(
         navigateRoute: MainPage(),
