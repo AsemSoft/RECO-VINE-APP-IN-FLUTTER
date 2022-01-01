@@ -16,7 +16,7 @@ class ContactUs extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushReplacement(
+              Navigator.pop(
                   context,
                   MaterialPageRoute(
                     builder: (context) => MainPage(),
