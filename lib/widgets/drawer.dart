@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:smart_test/UI/theme.dart';
 import 'package:smart_test/pages/about_us.dart';
@@ -76,6 +77,12 @@ class _MainDrawerState extends State<MainDrawer> {
             },
             title: Text("Contact Us"),
             leading: Icon(Icons.perm_phone_msg),
+            iconColor: Colors.green,
+          ),
+          ListTile(
+            onTap: () =>SystemNavigator.pop(),
+            title: Text("Exit"),
+            leading: Icon(Icons.exit_to_app),
             iconColor: Colors.green,
           ),
         ],
