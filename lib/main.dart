@@ -11,6 +11,7 @@ import 'package:splash_screen_view/SplashScreenView.dart';
 import 'UI/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'pages/view.dart';
 import 'provider/add_file.dart';
 
 void main() async {
@@ -19,10 +20,14 @@ void main() async {
 
   SharedPreferences pref = await SharedPreferences.getInstance();
   bool? decision = pref.getBool('x');
+  Widget screen;
+   screen = (decision == true || decision == null) ? const PView() : const MyApp() ;
 
-  Widget screen = (decision == true || decision == null) ? const PView() : const MyApp();
+/*  runApp(ChangeNotifierProvider<AddFile>(
+      create: (_)=>AddFile(),
+      child: screen));*/
 
-  runApp(screen);
+    runApp(screen);
 }
 
 class MyApp extends StatelessWidget {
@@ -33,13 +38,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'RECON VINE',
-        theme: Themes.lightMode,
-        darkTheme: Themes.darkMode,
-        themeMode: ThemeService().theme,
-        home:   StrartSplachScreen(),
-   );
+    return ChangeNotifierProvider<AddFile>
+      (
+      create: (context) => AddFile(),
+
+
+      child: GetMaterialApp(
+
+            debugShowCheckedModeBanner: false,
+            title: 'RECON VINE',
+            theme: Themes.lightMode,
+            darkTheme: Themes.darkMode,
+            themeMode: ThemeService().theme,
+
+            initialRoute:  'StrartSplachScreen',
+            routes: {
+
+              'StrartSplachScreen': (context) => const StrartSplachScreen(),
+              'MainPage': (context) => const MainPage(),
+
+            },
+
+      ),
+    );
   }
 }

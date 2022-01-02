@@ -4,11 +4,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_test/UI/theme.dart';
+import 'package:smart_test/pages/main_page.dart';
 import 'package:smart_test/pages/search.dart';
 import 'package:smart_test/provider/add_file.dart';
 import 'package:smart_test/service/file_db.dart';
 import 'package:smart_test/service/image_file.dart';
 import 'package:smart_test/ulity.dart';
+import 'package:smart_test/widgets/drawer.dart';
 
 class View extends StatefulWidget {
   const View({Key? key}) : super(key: key);
@@ -45,81 +48,71 @@ class _ViewState extends State<View> {
 
     List<File> imageFile = Provider.of<AddFile>(context).imageFile;
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MainPage(),
+                  ));
+            },
+            icon: Icon(Icons.home),
+          ),
+        ],
+        title: Text("View Result"),
+        centerTitle: true,
+      ),
+      drawer: Drawer(
+        child: MainDrawer(),
+      ),
       body: Container(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
             // const SizedBox(height: 30,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                // زر الرجوع الى الخلف
-                MaterialButton(
-                  minWidth: 40,
-                  height: 50,
-                  color: Colors.white70,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(15),
-                        topLeft: Radius.circular(15),
-                        bottomLeft: Radius.circular(15),
-                        bottomRight: Radius.circular(15),
-                      )),
-                  child: const Icon(Icons.arrow_back_ios_rounded,
-                      color: Colors.black),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
 
-                //// زر القائمةالجانبية
-                MaterialButton(
-                  minWidth: 40,
-                  height: 50,
-                  color: Colors.white70,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(15),
-                        topLeft: Radius.circular(15),
-                        bottomLeft: Radius.circular(15),
-                        bottomRight: Radius.circular(15),
-                      )),
-                  child: const Icon(Icons.menu_sharp, color: Colors.black),
-                  onPressed: () {},
-                ),
-              ],
-            ),
             // const SizedBox(height: 10,),
             const SizedBox(
               height: 50,
             ),
             Container(
+              decoration: BoxDecoration(
+                color: primaryColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
               height: 70,
               width: MediaQuery.of(context).size.width * .8,
-              color: Colors.green,
               alignment: Alignment.center,
               child: const Text(
                 'THE RESULT',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 34),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 34,
+                    color: Colors.white),
               ),
             ),
             const SizedBox(
               height: 30,
             ),
             Container(
-              color: _colors2,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: primaryColor,
+              ),
               width: MediaQuery.of(context).size.width * .8,
               height: MediaQuery.of(context).size.height * .53,
               padding: const EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   // ListView.builder(
                   //     itemCount:imageFile.length,
                   //     itemBuilder: (context,index) {}),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
                         padding: const EdgeInsets.all(0),
@@ -138,7 +131,10 @@ class _ViewState extends State<View> {
                               height: 10,
                             ),
                             Container(
-                              color: _colors3,
+                              decoration: BoxDecoration(
+                                  color: _colors3,
+                                  borderRadius:
+                                  BorderRadius.circular(10)),
                               alignment: Alignment.center,
                               height: 40,
                               width: 50,
@@ -168,7 +164,10 @@ class _ViewState extends State<View> {
                               height: 10,
                             ),
                             Container(
-                              color: _colors3,
+                              decoration: BoxDecoration(
+                                  color: _colors3,
+                                  borderRadius:
+                                  BorderRadius.circular(10)),
                               alignment: Alignment.center,
                               height: 40,
                               width: 50,
@@ -198,7 +197,10 @@ class _ViewState extends State<View> {
                               height: 10,
                             ),
                             Container(
-                              color: _colors,
+                              decoration: BoxDecoration(
+                                  color: _colors3,
+                                  borderRadius:
+                                  BorderRadius.circular(10)),
                               alignment: Alignment.center,
                               height: 40,
                               width: 50,
@@ -230,7 +232,10 @@ class _ViewState extends State<View> {
                             ),
                             imgFile.image4!.isNotEmpty
                                 ? Container(
-                              color: _colors4,
+                              decoration: BoxDecoration(
+                                  color: _colors3,
+                                  borderRadius:
+                                  BorderRadius.circular(10)),
                               alignment: Alignment.center,
                               height: 40,
                               width: 50,
@@ -262,7 +267,10 @@ class _ViewState extends State<View> {
                             ),
                             imgFile.image5!.isNotEmpty
                                 ? Container(
-                              color: _colors5,
+                              decoration: BoxDecoration(
+                                  color: _colors3,
+                                  borderRadius:
+                                  BorderRadius.circular(10)),
                               alignment: Alignment.center,
                               height: 40,
                               width: 50,
@@ -281,14 +289,18 @@ class _ViewState extends State<View> {
                     height: 10,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.only(left: 2),
                     child: Container(
-                      color: _colors,
+                      decoration: BoxDecoration(
+                          color: secondColor,
+                          borderRadius: BorderRadius.circular(20)),
                       height: MediaQuery.of(context).size.height * .3,
-                      width: MediaQuery.of(context).size.width * .69,
-                      child: Text(
-                        '${imgFile.details}',
-                        style:const TextStyle(color: Colors.white),
+                      width: MediaQuery.of(context).size.width * .9,
+                      child: Center(
+                        child: Text(
+                          '${imgFile.details}',
+                          style:const TextStyle(color: Colors.white ,),
+                        ),
                       ),
                     ),
                   ),

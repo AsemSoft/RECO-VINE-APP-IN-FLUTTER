@@ -4,10 +4,10 @@ import 'package:smart_test/service/image_file.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseFile{
-  List <ImagesFile> _list =[];
+
   int s=0;
   static Database? _database;
-  static String dbName ='uu.db';
+  static String dbName ='dbsy.db';
   static const String imageTable='imageTable';
   static const String id ='id';
   static const String name ='name';
@@ -44,17 +44,20 @@ class DatabaseFile{
         '$result1 TEXT, $result2 TEXT, $result3 TEXT, $result4 TEXT, $result5 TEXT )');
   }
 
-  int getID(){
-    getAllImagesFile().then((value){
-      if(value.isNotEmpty){
-        _list.addAll(value);}
-    });
-    if (_list.isEmpty){
-      return 0;
-    }else{
-      return _list.last.id!+1;
-    }
-  }
+  // int getID(){
+  //   List <ImagesFile> _list =[];
+  //   getAllImagesFile().then((value)async{
+  //     if(value.isNotEmpty){
+  //     _list.addAll(value);
+  //     }
+  //   });
+  //   if (_list.isEmpty){
+  //     return 0;
+  //   }else{
+  //   return _list.last.id!+1;
+  //
+  //   }
+  // }
   Future <ImagesFile>save(ImagesFile imagesFile)async{
     final db = await database;
     imagesFile.id = await db.insert(imageTable,imagesFile.toMap());
