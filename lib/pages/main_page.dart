@@ -38,6 +38,7 @@ class _MainPageState extends State<MainPage> {
         setState(() {
           img1 = File(pickedFile.path);
         });
+         isButtonDisable1 = true;
         imageFile.add(img1!);
         Utility.imageName.add(Utility.base64String(img1!.readAsBytesSync()));
       }
@@ -45,6 +46,7 @@ class _MainPageState extends State<MainPage> {
         setState(() {
           img2 = File(pickedFile.path);
         });
+        isButtonDisable2 = true;
         imageFile.add(img2!);
         Utility.imageName.add(Utility.base64String(img2!.readAsBytesSync()));
       }
@@ -52,6 +54,7 @@ class _MainPageState extends State<MainPage> {
         setState(() {
           img3 = File(pickedFile.path);
         });
+        isButtonDisable3 = true;
         imageFile.add(img3!);
         Utility.imageName.add(Utility.base64String(img3!.readAsBytesSync()));
       }
@@ -59,6 +62,7 @@ class _MainPageState extends State<MainPage> {
         setState(() {
           img4 = File(pickedFile.path);
         });
+        isButtonDisable4 = true;
         imageFile.add(img4!);
         Utility.imageName.add(Utility.base64String(img4!.readAsBytesSync()));
       }
@@ -66,6 +70,7 @@ class _MainPageState extends State<MainPage> {
         setState(() {
           img5 = File(pickedFile.path);
         });
+        isButtonDisable5 = true;
         imageFile.add(img5!);
         Utility.imageName.add(Utility.base64String(img5!.readAsBytesSync()));
       }
@@ -79,6 +84,8 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenwidth = MediaQuery.of(context).size.width;
+    double screenheight = MediaQuery.of(context).size.height;
     return  Scaffold(
           appBar: AppBar(
             actions: [
@@ -196,7 +203,7 @@ class _MainPageState extends State<MainPage> {
                               ),
                             );
                             showDialog(context: context, builder: (context) => ad);
-                            isButtonDisable1=true;
+
                           },
                         )
                       ],
@@ -296,14 +303,14 @@ class _MainPageState extends State<MainPage> {
                               ),
                             );
                             showDialog(context: context, builder: (context) => ad);
-                            isButtonDisable2=true;
+
                           },
                         )
                       ],
                     ),
                   ),
                 ),
-                Padding(
+                  Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Container(
                     margin: const EdgeInsets.all(5),
@@ -396,7 +403,6 @@ class _MainPageState extends State<MainPage> {
                               ),
                             );
                             showDialog(context: context, builder: (context) => ad);
-                            isButtonDisable3=true;
                           },
                         )
                       ],
@@ -496,7 +502,6 @@ class _MainPageState extends State<MainPage> {
                               ),
                             );
                             showDialog(context: context, builder: (context) => ad);
-                            isButtonDisable4=true;
                           },
                         )
                       ],
@@ -596,7 +601,6 @@ class _MainPageState extends State<MainPage> {
                               ),
                             );
                             showDialog(context: context, builder: (context) => ad);
-                            isButtonDisable5=true;
                           },
                         )
                       ],

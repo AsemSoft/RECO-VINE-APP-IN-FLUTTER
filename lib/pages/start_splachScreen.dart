@@ -21,22 +21,24 @@ class _StrartSplachScreenState extends State<StrartSplachScreen> {
   @override
 
   Widget build(BuildContext context) {
-    return  SplashScreenView(
-          navigateRoute: MainPage(),
-          duration:5000 ,
-          imageSize: 250,
-          imageSrc:"images/started page.png",
-          text: "RECO VINE APP",
-          textType: TextType.ColorizeAnimationText,
-          colors: [
-            Colors.purple,
-            Colors.blue,
-            Colors.yellow,
-            Colors.red,
-          ],
-          backgroundColor: Colors.white,
-     textStyle: TextStyle(color: primaryColor ,fontWeight:FontWeight.bold ,fontSize: 30),
+    return  Center(
+      child: SplashScreenView(
+            navigateRoute: MainPage(),
+            duration:5000 ,
+            imageSize: 250,
+            imageSrc:"images/started page.png",
+            text: "RECO VINE APP",
+            textType: TextType.ColorizeAnimationText,
+            colors: [
+              Colors.purple,
+              Colors.blue,
+              Colors.yellow,
+              Colors.red,
+            ],
+            backgroundColor: Colors.white,
+       textStyle: TextStyle(color: primaryColor ,fontWeight:FontWeight.bold ,fontSize: 30),
 
+      ),
     );
   }
 }
