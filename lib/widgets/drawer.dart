@@ -87,7 +87,24 @@ class _MainDrawerState extends State<MainDrawer> {
             iconColor: Colors.green,
           ),
           ListTile(
-            onTap: () =>SystemNavigator.pop(),
+            onTap: () {
+              Get.defaultDialog(
+                title: "Warring",
+                middleText: "Are you sure to exit from app ? ",
+                backgroundColor: primaryColor,
+                titleStyle: TextStyle(color: Colors.red),
+                middleTextStyle: TextStyle(color: Colors.white),
+                textCancel: "Cancel",
+                textConfirm: "Confirm",
+                onConfirm: (){
+                  SystemNavigator.pop();
+                },
+                cancelTextColor: Colors.white,
+                buttonColor: Colors.white,
+                radius: 30,
+
+              );
+            },
             title: Text("Exit "),
             leading: Icon(Icons.exit_to_app),
             iconColor: Colors.green,
