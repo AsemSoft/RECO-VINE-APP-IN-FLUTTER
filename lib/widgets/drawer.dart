@@ -99,6 +99,7 @@ class _MainDrawerState extends State<MainDrawer> {
                 onConfirm: (){
                   SystemNavigator.pop();
                 },
+                barrierDismissible: false,
                 cancelTextColor: Colors.white,
                 buttonColor: Colors.white,
                 radius: 30,
