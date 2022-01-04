@@ -13,18 +13,7 @@ class ContactUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pop(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MainPage(),
-                  ));
-            },
-            icon: Icon(Icons.home),
-          ),
-        ],
+
         title: Text("Contact Us"),
       ),
 

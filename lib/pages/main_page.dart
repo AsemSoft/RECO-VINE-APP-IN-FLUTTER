@@ -88,18 +88,6 @@ class _MainPageState extends State<MainPage> {
     double screenheight = MediaQuery.of(context).size.height;
     return  Scaffold(
           appBar: AppBar(
-            actions: [
-              IconButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MainPage(),
-                      ));
-                },
-                icon: Icon(Icons.home),
-              ),
-            ],
             title: Text("Main Page"),
             centerTitle: true,
           ),

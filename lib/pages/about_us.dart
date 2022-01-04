@@ -11,7 +11,7 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
+        /*actions: [
           IconButton(
             onPressed: () {
               Navigator.pushReplacement(
@@ -22,7 +22,7 @@ class AboutUs extends StatelessWidget {
             },
             icon: Icon(Icons.home),
           ),
-        ],
+        ],*/
         title: Text("About Us"),
       ),
 
