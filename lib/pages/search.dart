@@ -92,7 +92,9 @@ class _SearchPageState extends State<SearchPage> {
           ),
         ],
       ),
-
+      drawer: Drawer(
+        child: MainDrawer(),
+      ),
 
       body:textEditingController.text.isNotEmpty&&folderListTemp.isEmpty||folderList.isEmpty?
       Center(child: Column(
