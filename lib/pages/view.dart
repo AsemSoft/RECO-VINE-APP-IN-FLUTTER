@@ -64,9 +64,7 @@ class _ViewState extends State<View> {
         title: Text("View Result"),
         centerTitle: true,
       ),
-      drawer: Drawer(
-        child: MainDrawer(),
-      ),
+
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(20),
