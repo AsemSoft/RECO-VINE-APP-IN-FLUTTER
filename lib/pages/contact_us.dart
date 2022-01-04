@@ -27,9 +27,7 @@ class ContactUs extends StatelessWidget {
         ],
         title: Text("Contact Us"),
       ),
-      drawer: Drawer(
-        child: MainDrawer(),
-      ),
+
       body: Center(
         child: SingleChildScrollView(
           child: Column(

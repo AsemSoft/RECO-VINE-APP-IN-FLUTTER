@@ -25,9 +25,6 @@ class AboutUs extends StatelessWidget {
         ],
         title: Text("About Us"),
       ),
-        drawer: Drawer(
-          child: MainDrawer(),
-      ),
 
       body: SingleChildScrollView(
         child: Column(

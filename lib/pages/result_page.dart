@@ -97,9 +97,7 @@ class _ResultPageState extends State<ResultPage> {
           title: Text("Result"),
           backgroundColor: Get.isDarkMode ? darkColor : primaryColor,
         ),
-        drawer: Drawer(
-          child: MainDrawer(),
-        ),
+
         body: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(20),
