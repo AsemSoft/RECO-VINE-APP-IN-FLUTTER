@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:smart_test/UI/theme.dart';
 import 'package:smart_test/UI/theme.dart';
 import 'package:smart_test/UI/theme.dart';
@@ -82,11 +83,12 @@ class _SearchPageState extends State<SearchPage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushReplacement(
+              /*Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) => MainPage(),
-                  ));
+                  ));*/
+              Get.offAll(MainPage());
             },
             icon: Icon(Icons.home),
           ),

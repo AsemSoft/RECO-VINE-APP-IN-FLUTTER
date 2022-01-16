@@ -17,15 +17,15 @@ class View extends StatefulWidget {
   const View({Key? key}) : super(key: key);
   static const id = 'View';
   static List<String> results = [];
+
   @override
   _ViewState createState() => _ViewState();
 }
 
 class _ViewState extends State<View> {
-
   // List<File> images = AddFile().imageFile;
 
-  final Color  _colors = const Color(0x99499973);
+  final Color _colors = const Color(0x99499973);
   final Color _colors2 = const Color(0x8499D7B4);
   final Color _colors3 = const Color(0x59011509);
   final Color _colors4 = const Color(0x593E6D2F);
@@ -34,17 +34,18 @@ class _ViewState extends State<View> {
   double progress = 0.0;
   final Dio dio = Dio();
   late DatabaseFile db;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    db = DatabaseFile ();
+    db = DatabaseFile();
   }
 
   @override
   Widget build(BuildContext context) {
-
-    ImagesFile? imgFile = ModalRoute.of(context)!.settings.arguments as ImagesFile? ;
+    ImagesFile? imgFile =
+        ModalRoute.of(context)!.settings.arguments as ImagesFile?;
 
     List<File> imageFile = Provider.of<AddFile>(context).imageFile;
     return Scaffold(
@@ -64,15 +65,11 @@ class _ViewState extends State<View> {
         title: Text("View Result"),
         centerTitle: true,
       ),
-
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(20),
           child: Column(
             children: <Widget>[
-              // const SizedBox(height: 30,),
-
-              // const SizedBox(height: 10,),
               const SizedBox(
                 height: 50,
               ),
@@ -119,11 +116,13 @@ class _ViewState extends State<View> {
                             children: [
                               ClipOval(
                                 child: Container(
-
                                   padding: const EdgeInsets.all(0),
                                   height: 55,
                                   width: 55,
-                                  child: Image.memory(Utility.image(imgFile!.image1!),fit: BoxFit.fill,),
+                                  child: Image.memory(
+                                    Utility.image(imgFile!.image1!),
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                               const SizedBox(
@@ -132,14 +131,13 @@ class _ViewState extends State<View> {
                               Container(
                                 decoration: BoxDecoration(
                                     color: _colors3,
-                                    borderRadius:
-                                    BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(10)),
                                 alignment: Alignment.center,
                                 height: 40,
                                 width: 50,
                                 child: Text(
                                   '${imgFile.result1}',
-                                  style:const TextStyle(color: Colors.white),
+                                  style: const TextStyle(color: Colors.white),
                                 ),
                               ),
                             ],
@@ -151,13 +149,13 @@ class _ViewState extends State<View> {
                             children: [
                               ClipOval(
                                 child: Container(
-
                                     padding: const EdgeInsets.all(0),
                                     height: 55,
                                     width: 55,
-                                    child:Image.memory(Utility.image(imgFile.image2!),fit: BoxFit.fill,)
-
-                                ),
+                                    child: Image.memory(
+                                      Utility.image(imgFile.image2!),
+                                      fit: BoxFit.fill,
+                                    )),
                               ),
                               const SizedBox(
                                 height: 10,
@@ -165,16 +163,15 @@ class _ViewState extends State<View> {
                               Container(
                                 decoration: BoxDecoration(
                                     color: _colors3,
-                                    borderRadius:
-                                    BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(10)),
                                 alignment: Alignment.center,
                                 height: 40,
                                 width: 50,
-                                child:  Text('${imgFile.result2}',
-                                  style:const TextStyle(color: Colors.white),
+                                child: Text(
+                                  '${imgFile.result2}',
+                                  style: const TextStyle(color: Colors.white),
                                 ),
                               )
-
                             ],
                           ),
                         ),
@@ -184,13 +181,13 @@ class _ViewState extends State<View> {
                             children: [
                               ClipOval(
                                 child: Container(
-
                                     padding: const EdgeInsets.all(0),
                                     height: 55,
                                     width: 55,
-                                    child:Image.memory(Utility.image(imgFile.image3!),fit: BoxFit.fill,)
-
-                                ),
+                                    child: Image.memory(
+                                      Utility.image(imgFile.image3!),
+                                      fit: BoxFit.fill,
+                                    )),
                               ),
                               const SizedBox(
                                 height: 10,
@@ -198,17 +195,15 @@ class _ViewState extends State<View> {
                               Container(
                                 decoration: BoxDecoration(
                                     color: _colors3,
-                                    borderRadius:
-                                    BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(10)),
                                 alignment: Alignment.center,
                                 height: 40,
                                 width: 50,
-                                child:  Text(
+                                child: Text(
                                   '${imgFile.result3}',
-                                  style:const TextStyle(color: Colors.white),
+                                  style: const TextStyle(color: Colors.white),
                                 ),
                               )
-
                             ],
                           ),
                         ),
@@ -222,7 +217,10 @@ class _ViewState extends State<View> {
                                   height: 55,
                                   width: 55,
                                   child: imgFile.image4!.isNotEmpty
-                                      ?  Image.memory(Utility.image(imgFile.image4!),fit: BoxFit.fill,)
+                                      ? Image.memory(
+                                          Utility.image(imgFile.image4!),
+                                          fit: BoxFit.fill,
+                                        )
                                       : Container(),
                                 ),
                               ),
@@ -231,18 +229,19 @@ class _ViewState extends State<View> {
                               ),
                               imgFile.image4!.isNotEmpty
                                   ? Container(
-                                decoration: BoxDecoration(
-                                    color: _colors3,
-                                    borderRadius:
-                                    BorderRadius.circular(10)),
-                                alignment: Alignment.center,
-                                height: 40,
-                                width: 50,
-                                child: Text(
-                                  '${imgFile.result4}',
-                                  style:const TextStyle(color: Colors.white),
-                                ),
-                              )
+                                      decoration: BoxDecoration(
+                                          color: _colors3,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      alignment: Alignment.center,
+                                      height: 40,
+                                      width: 50,
+                                      child: Text(
+                                        '${imgFile.result4}',
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                      ),
+                                    )
                                   : Container(),
                             ],
                           ),
@@ -257,7 +256,10 @@ class _ViewState extends State<View> {
                                   height: 55,
                                   width: 55,
                                   child: imgFile.image5!.isNotEmpty
-                                      ?  Image.memory(Utility.image(imgFile.image5!),fit: BoxFit.fill,)
+                                      ? Image.memory(
+                                          Utility.image(imgFile.image5!),
+                                          fit: BoxFit.fill,
+                                        )
                                       : Container(),
                                 ),
                               ),
@@ -266,18 +268,19 @@ class _ViewState extends State<View> {
                               ),
                               imgFile.image5!.isNotEmpty
                                   ? Container(
-                                decoration: BoxDecoration(
-                                    color: _colors3,
-                                    borderRadius:
-                                    BorderRadius.circular(10)),
-                                alignment: Alignment.center,
-                                height: 40,
-                                width: 50,
-                                child: Text(
-                                  '${imgFile.result5}',
-                                  style:const TextStyle(color: Colors.white),
-                                ),
-                              )
+                                      decoration: BoxDecoration(
+                                          color: _colors3,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      alignment: Alignment.center,
+                                      height: 40,
+                                      width: 50,
+                                      child: Text(
+                                        '${imgFile.result5}',
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                      ),
+                                    )
                                   : Container(),
                             ],
                           ),
@@ -287,22 +290,25 @@ class _ViewState extends State<View> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Padding(
+                 // second page result
+                 /*   Padding(
                       padding: const EdgeInsets.only(left: 2),
                       child: Container(
                         decoration: BoxDecoration(
-                            color: secondColor,
+                            color: Colors.red,
                             borderRadius: BorderRadius.circular(20)),
                         height: MediaQuery.of(context).size.height * .3,
                         width: MediaQuery.of(context).size.width * .9,
                         child: Center(
                           child: Text(
                             '${imgFile.details}',
-                            style:const TextStyle(color: Colors.white ,),
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
-                    ),
+                    ),*/
                   ],
                 ),
               ),
@@ -368,7 +374,6 @@ class _ViewState extends State<View> {
                               MaterialPageRoute(
                                 builder: (context) => const SearchPage(),
                               ));
-
                         },
                       ),
                       const Text('Save', style: TextStyle(fontSize: 18)),
@@ -403,9 +408,9 @@ class _ViewState extends State<View> {
               ),
               isLoading
                   ? LinearProgressIndicator(
-                minHeight: 10,
-                value: progress,
-              )
+                      minHeight: 10,
+                      value: progress,
+                    )
                   : Container(),
             ],
           ),

@@ -45,7 +45,7 @@ class _MainDrawerState extends State<MainDrawer> {
           ),
           ListTile(
             onTap: () {
-              Get.to(SearchPage());
+              Get.off(SearchPage());
             },
             title: Text("Saved File"),
             leading: Icon(Icons.save),

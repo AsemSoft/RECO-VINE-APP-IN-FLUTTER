@@ -82,19 +82,10 @@ class _ResultPageState extends State<ResultPage> {
 
     return  Scaffold(
         appBar: AppBar(
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.pop(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MainPage(),
-                    ));
-              },
-              icon: Icon(Icons.home),
-            ),
-          ],
-          title: Text("Result"),
+
+          title: Text("Result" ,),
+          elevation: 0,
+          centerTitle: true,
           backgroundColor: Get.isDarkMode ? darkColor : primaryColor,
         ),
 
@@ -126,6 +117,7 @@ class _ResultPageState extends State<ResultPage> {
                   height: 30,
                 ),
                 Stack(
+                  alignment: AlignmentDirectional.bottomCenter,
                   children: [
                     Container(
                       decoration: BoxDecoration(
@@ -334,33 +326,80 @@ class _ResultPageState extends State<ResultPage> {
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: secondColor,
-                                  borderRadius: BorderRadius.circular(20)),
-                              height: MediaQuery.of(context).size.height * .3,
-                              width: MediaQuery.of(context).size.width * .9,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      'images/2.jpg',
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
+                          // const SizedBox(
+                          //   height: 5,
+                          // ),
+                          //second containers in side containers
+                         Column(
+                           children: [
+                             Row(
+                               mainAxisAlignment: MainAxisAlignment.spaceAround,
+                               children: [
+                                 Container(
+                                   decoration: BoxDecoration(
+                                       color: secondColor,
+                                       borderRadius: BorderRadius.circular(20)),
+                                   height: MediaQuery.of(context).size.height * .2,
+                                   width: MediaQuery.of(context).size.width * .4,
+                                   child: Padding(
+                                     padding: const EdgeInsets.all(8.0),
+                                     child: const Text(
+                                       'images/2.jpg',style: TextStyle(),
+                                     ),
+                                   ),
+                                 ),
+                                 Container(
+                                   decoration: BoxDecoration(
+                                       color: secondColor,
+                                       borderRadius: BorderRadius.circular(20)),
+                                   height: MediaQuery.of(context).size.height * .2,
+                                   width: MediaQuery.of(context).size.width * .4,
+                                   child: Padding(
+                                     padding: const EdgeInsets.all(8.0),
+                                     child: Row(
+                                       crossAxisAlignment: CrossAxisAlignment.start,
+                                       children: [
+                                         const Text(
+                                           'images/2.jpg',
+                                         ),
+                                       ],
+                                     ),
+                                   ),
+                                 ),
+
+                               ],
+                             ),
+                             SizedBox(height: 5,),
+                             Container(
+
+                               decoration: BoxDecoration(
+                                   color: secondColor,
+                                   borderRadius: BorderRadius.circular(20)),
+                               height: 130,
+                               width: MediaQuery.of(context).size.width * .9,
+                               child: Padding(
+                                 padding: const EdgeInsets.all(8.0),
+                                 child: Row(
+                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                   children: [
+                                     const Text(
+                                       'images/2.jpg',
+                                     ),
+                                   ],
+                                 ),
+                               ),
+                             ),
+
+
+                           ],
+                         )
                         ],
                       ),
                     ),
+                   /* Container(color: Colors.red,
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    height: 85
+                      ,),*/
                   ],
                 ),
                 Padding(
@@ -421,9 +460,14 @@ class _ResultPageState extends State<ResultPage> {
                             //Navigator.of(context).pop;
                             print(Utility.name+ '${getID()}');
 
-                            Navigator.push(
+                            // using old way by navigator;
+                          /*  Navigator.pushReplacement(
                                 context,
-                                MaterialPageRoute(builder: (context) => const SearchPage(),));
+                                MaterialPageRoute(builder: (context) => const SearchPage(),));*/
+
+                            Get.offAll(
+                                ()=>SearchPage()
+                            );
                             Utility.imageName.clear();
                           },
                         ),

@@ -34,50 +34,141 @@ class _MainPageState extends State<MainPage> {
   getImage(ImageSource src,int i) async {
     final pickedFile = await picker.pickImage(source: src);
     if (pickedFile!.path !=null) {
-      if(i==1){
-        setState(() {
-          img1 = File(pickedFile.path);
-        });
-         isButtonDisable1 = true;
-        imageFile.add(img1!);
-        Utility.imageName.add(Utility.base64String(img1!.readAsBytesSync()));
+      if (File(pickedFile.path).readAsBytesSync().length< 800000){
+        if (i == 1) {
+
+
+          //second solution  setState() called after dispose()
+     /*     if (mounted) {
+            setState(() {
+              img1 = File(pickedFile.path);
+              print("setstate called ");
+              // Your state change code goes here
+            });
+          }*/
+
+          //fist solution of sestate called after disposed
+          print("before setState called");
+
+
+          print("setstate called ");
+
+
+          if (!mounted) return;
+          setState(() {
+            img1 = File(pickedFile.path);
+            print("setstate called ");
+          });
+          imageFile.add(img1!);
+          Utility.imageName.add(Utility.base64String(img1!.readAsBytesSync()));
+          print(File(pickedFile.path).readAsBytesSync().length);
+          isButtonDisable1 = true;
+          // Utility.img = img1!.readAsBytesSync();
+          // Utility.fileByte = img1!.readAsBytesSync();
+          // print(Utility.fileByte);
+          // // print(img1.toString());
+        }
+        else if (i == 2) {
+          setState(() {
+            img2 = File(pickedFile.path);
+          });
+          imageFile.add(img2!);
+          Utility.imageName.add(Utility.base64String(img2!.readAsBytesSync()));
+          print(File(pickedFile.path).readAsBytesSync().length);
+          isButtonDisable2 = true;
+        }
+        else if (i == 3) {
+          setState(() {
+            img3 = File(pickedFile.path);
+          });
+          imageFile.add(img3!);
+          Utility.imageName.add(Utility.base64String(img3!.readAsBytesSync()));
+          print(File(pickedFile.path).readAsBytesSync().length);
+          isButtonDisable3 = true;
+        }
+        else if (i == 4) {
+          setState(() {
+            img4 = File(pickedFile.path);
+          });
+          imageFile.add(img4!);
+          Utility.imageName.add(Utility.base64String(img4!.readAsBytesSync()));
+          print(File(pickedFile.path).readAsBytesSync().length);
+          isButtonDisable4 = true;
+        }
+        else if (i == 5) {
+          setState(() {
+            img5 = File(pickedFile.path);
+          });
+          imageFile.add(img5!);
+          Utility.imageName.add(Utility.base64String(img5!.readAsBytesSync()));
+          print(File(pickedFile.path).readAsBytesSync().length);
+          isButtonDisable5 = true;
+        }
       }
-      else if(i==2){
-        setState(() {
-          img2 = File(pickedFile.path);
-        });
-        isButtonDisable2 = true;
-        imageFile.add(img2!);
-        Utility.imageName.add(Utility.base64String(img2!.readAsBytesSync()));
-      }
-      else if(i==3){
-        setState(() {
-          img3 = File(pickedFile.path);
-        });
-        isButtonDisable3 = true;
-        imageFile.add(img3!);
-        Utility.imageName.add(Utility.base64String(img3!.readAsBytesSync()));
-      }
-      else if(i==4){
-        setState(() {
-          img4 = File(pickedFile.path);
-        });
-        isButtonDisable4 = true;
-        imageFile.add(img4!);
-        Utility.imageName.add(Utility.base64String(img4!.readAsBytesSync()));
-      }
-      else if(i==5){
-        setState(() {
-          img5 = File(pickedFile.path);
-        });
-        isButtonDisable5 = true;
-        imageFile.add(img5!);
-        Utility.imageName.add(Utility.base64String(img5!.readAsBytesSync()));
+      else {
+
+        // print(File(pickedFile.path).readAsBytesSync().length);
+        // showWarningForm(context);
+        Get.defaultDialog(
+          title: "Image Error",
+          middleText: "Please select image size less than 2 MG",
+          backgroundColor: primaryColor,
+          titleStyle: TextStyle(color: Colors.red),
+          middleTextStyle: TextStyle(color: Colors.white),
+          textConfirm: "Confirm",
+          onConfirm: (){
+            Get.back();
+          },
+          barrierDismissible: false,
+          cancelTextColor: Colors.white,
+          buttonColor: Colors.white,
+          radius: 30,
+
+        );
       }
     }
     else {
       print('no file');
     }
+  }
+
+
+  void showWarningForm(context) async {
+    Container alertDialog = Container(
+      padding: EdgeInsets.zero,
+      child: AlertDialog(
+        actions: <Widget>[
+          MaterialButton(
+            color:primaryColor,
+            onPressed: ()
+            {
+              Navigator.pop(context);
+            },
+
+            child:const Text('ok',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+          ),
+        ],
+        content: Container(
+          padding: EdgeInsets.zero,
+          height: 60,
+          child: const Text('Please select image size less than 2 MG',
+            style: TextStyle(color: primaryColor, fontSize: 20,),
+          ),
+        ),
+        title:  Row(
+          children:const [
+            Text('Image Error' ,style: TextStyle(color:Colors.red,fontWeight: FontWeight.bold),),
+            SizedBox(width: 20),
+            Icon(Icons.warning,color: Colors.red,size: 30,),
+          ],
+        ),
+      ),
+    );
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return alertDialog;
+        });
   }
 
   bool disable = false;
@@ -86,6 +177,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
+    GAddFile gAddFile = Get.put(GAddFile());
     return  Scaffold(
           appBar: AppBar(
             title: Text("Main Page"),
@@ -600,84 +692,90 @@ class _MainPageState extends State<MainPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: MaterialButton(
-                    color: primaryColor,
-                    minWidth: MediaQuery
-                        .of(context)
-                        .size
-                        .width * .9,
-                    padding: const EdgeInsets.all(10),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          topLeft: Radius.circular(20),
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                        )),
-                    height: 60,
-                    child: Text(
-                      "Swipe To Execute",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                  child:  MaterialButton(
+                      color: primaryColor,
+                      minWidth: MediaQuery
+                          .of(context)
+                          .size
+                          .width * .9,
+                      padding: const EdgeInsets.all(10),
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            topLeft: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          )),
+                      height: 60,
+                      child: Text(
+                        "Swipe To Execute",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+
+                      onPressed: () async {
+                        print(imageFile);
+
+                        AddFile imageFile1 = Provider.of<AddFile>(context, listen: false);
+                        await imageFile1.addImage(imageFile);
+
+                        // await  gAddFile.addImage(imageFile) ;
+                        if (imageFile1.imageFile.length >= 3) {
+
+                          // using old way by navigator;
+                          /*Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ResultPage(),
+                              ));*/
+                          Get.to(ResultPage());
+                        } else if (imageFile1.imageFile.length== 0) {
+                          Get.defaultDialog(
+                            title: "Error",
+                            middleText: "No Image selected ",
+                            backgroundColor: primaryColor,
+                            titleStyle: TextStyle(color: Colors.red),
+                            middleTextStyle: TextStyle(color: Colors.white),
+                            textCancel: "Cancel",
+                            cancelTextColor: Colors.white,
+                            buttonColor: Colors.white,
+
+                            radius: 30,
+                          );
+                        } else {
+                          Get.defaultDialog(
+                            title: "Error",
+                            middleText: "Image selected is less than two ",
+                            backgroundColor: primaryColor,
+                            titleStyle: TextStyle(color: Colors.red),
+                            middleTextStyle: TextStyle(color: Colors.white),
+                            textCancel: "Cancel",
+                            cancelTextColor: Colors.white,
+                            buttonColor: Colors.white,
+
+                            radius: 30,
+                          );
+
+                          // snakbar we can delete
+                          // Get.snackbar(
+                          // 'Error',
+                          // 'Image Selected less than two',
+                          // snackPosition: SnackPosition.BOTTOM,
+                          // colorText: Colors.red,
+                          // leftBarIndicatorColor: Colors.red,
+                          // backgroundColor: Colors.white,
+                          // icon: Icon(
+                          // Icons.error,
+                          // color: Colors.red,
+                          // ),
+                          // );
+                        }
+                      },
                     ),
-
-                    onPressed: () async {
-                      print(imageFile);
-                      AddFile imageFile1 =
-                      Provider.of<AddFile>(context, listen: false);
-                      await imageFile1.addImage(imageFile);
-                      if (imageFile1.imageFile.length >= 3) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ResultPage(),
-                            ));
-                      } else if (imageFile1.imageFile.length == 0) {
-                        Get.defaultDialog(
-                          title: "Error",
-                          middleText: "No Image selected ",
-                          backgroundColor: primaryColor,
-                          titleStyle: TextStyle(color: Colors.red),
-                          middleTextStyle: TextStyle(color: Colors.white),
-                          textCancel: "Cancel",
-                          cancelTextColor: Colors.white,
-                          buttonColor: Colors.white,
-
-                          radius: 30,
-                        );
-                      } else {
-                        Get.defaultDialog(
-                          title: "Error",
-                          middleText: "Image selected is less than two ",
-                          backgroundColor: primaryColor,
-                          titleStyle: TextStyle(color: Colors.red),
-                          middleTextStyle: TextStyle(color: Colors.white),
-                          textCancel: "Cancel",
-                          cancelTextColor: Colors.white,
-                          buttonColor: Colors.white,
-
-                          radius: 30,
-                        );
-
-                        // snakbar we can delete
-                        // Get.snackbar(
-                        // 'Error',
-                        // 'Image Selected less than two',
-                        // snackPosition: SnackPosition.BOTTOM,
-                        // colorText: Colors.red,
-                        // leftBarIndicatorColor: Colors.red,
-                        // backgroundColor: Colors.white,
-                        // icon: Icon(
-                        // Icons.error,
-                        // color: Colors.red,
-                        // ),
-                        // );
-                      }
-                    },
                   ),
-                ),
+
 
 
               ],
