@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_test/UI/theme.dart';
@@ -11,6 +12,7 @@ import 'package:smart_test/pages/search.dart';
 import 'package:smart_test/provider/add_file.dart';
 import 'package:smart_test/service/file_db.dart';
 import 'package:smart_test/service/image_file.dart';
+import 'package:smart_test/service/utils.dart';
 import 'package:smart_test/ulity.dart';
 import 'package:smart_test/widgets/drawer.dart';
 
@@ -31,9 +33,10 @@ class _ResultPageState extends State<ResultPage> {
   bool isLoading = false;
   double progress = 0.0;
   final Dio dio = Dio();
-  late DatabaseFile db ;
-  List <ImagesFile> imagesFile=[];
-  List <int> list =[];
+  late DatabaseFile db;
+
+  List<ImagesFile> imagesFile = [];
+  List<int> list = [];
 
   refresh() {
     db.getAllImagesFile().then((value) {
@@ -46,33 +49,28 @@ class _ResultPageState extends State<ResultPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    db=DatabaseFile();
-    imagesFile=[];
+    db = DatabaseFile();
+    imagesFile = [];
     //
-    db.getAllImagesFile().then((value)async{
-      if(value.isNotEmpty){
+    db.getAllImagesFile().then((value) async {
+      if (value.isNotEmpty) {
         setState(() {
           imagesFile.addAll(value);
         });
-        if (imagesFile.isNotEmpty){
-          for(int i=0;i<imagesFile.length;i++)
-          {
+        if (imagesFile.isNotEmpty) {
+          for (int i = 0; i < imagesFile.length; i++) {
             list.add(imagesFile.elementAt(i).id!);
           }
         }
       }
     });
-
-
-
   }
-  int getID(){
 
-    if (list.isEmpty){
+  int getID() {
+    if (list.isEmpty) {
       return 0;
-    }else{
-      return list.last+1;
-
+    } else {
+      return list.last + 1;
     }
   }
 
@@ -80,427 +78,585 @@ class _ResultPageState extends State<ResultPage> {
   Widget build(BuildContext context) {
     List<File> imageFile = Provider.of<AddFile>(context).imageFile;
 
-    return  Scaffold(
-        appBar: AppBar(
-
-          title: Text("Result" ,),
-          elevation: 0,
-          centerTitle: true,
-          backgroundColor: Get.isDarkMode ? darkColor : primaryColor,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Result",
         ),
+        elevation: 0,
+        centerTitle: true,
+        backgroundColor: Get.isDarkMode ? darkColor : primaryColor,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: <Widget>[
+              const SizedBox(
+                height: 50,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: primaryColor,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                height: 70,
+                width: MediaQuery.of(context).size.width * .8,
+                alignment: Alignment.center,
+                child: const Text(
+                  'THE RESULT',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 34,
+                      color: Colors.white),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Stack(
+                alignment: AlignmentDirectional.bottomCenter,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: primaryColor,
+                    ),
+                    width: MediaQuery.of(context).size.width * .9,
+                    height: MediaQuery.of(context).size.height * .53,
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          // crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              padding: const EdgeInsets.all(0),
+                              child: Column(
+                                children: [
+                                  ClipOval(
+                                    child: Container(
+                                      padding: const EdgeInsets.all(0),
+                                      height: 55,
+                                      width: 55,
+                                      child: imageFile.isEmpty
+                                          ? Container()
+                                          : Image.file(
+                                              imageFile.elementAt(0),
+                                              fit: BoxFit.cover,
+                                            ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  imageFile.isEmpty
+                                      ? Container()
+                                      : Container(
+                                          decoration: BoxDecoration(
+                                              color: _colors3,
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          alignment: Alignment.center,
+                                          height: 40,
+                                          width: 50,
+                                          child: const Text(
+                                            '85%',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(0),
+                              child: Column(
+                                children: [
+                                  ClipOval(
+                                    child: Container(
+                                      padding: const EdgeInsets.all(0),
+                                      height: 55,
+                                      width: 55,
+                                      child: imageFile.length >= 2
+                                          ? Image.file(
+                                              imageFile.elementAt(1),
+                                              fit: BoxFit.cover,
+                                            )
+                                          : Container(),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  imageFile.length >= 2
+                                      ? Container(
+                                          decoration: BoxDecoration(
+                                              color: _colors3,
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          alignment: Alignment.center,
+                                          height: 40,
+                                          width: 50,
+                                          child: const Text(
+                                            '87%',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        )
+                                      : Container(),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(0),
+                              child: Column(
+                                children: [
+                                  ClipOval(
+                                    child: Container(
+                                      padding: const EdgeInsets.all(0),
+                                      height: 55,
+                                      width: 55,
+                                      child: imageFile.length >= 3
+                                          ? Image.file(
+                                              imageFile.elementAt(2),
+                                              fit: BoxFit.cover,
+                                            )
+                                          : Container(),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  imageFile.length >= 3
+                                      ? Container(
+                                          decoration: BoxDecoration(
+                                              color: _colors,
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          alignment: Alignment.center,
+                                          height: 40,
+                                          width: 50,
+                                          child: const Text(
+                                            '75%',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        )
+                                      : Container(),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(0),
+                              child: Column(
+                                children: [
+                                  ClipOval(
+                                    child: Container(
+                                      padding: const EdgeInsets.all(0),
+                                      height: 55,
+                                      width: 55,
+                                      child: imageFile.length >= 4
+                                          ? Image.file(
+                                              imageFile.elementAt(3),
+                                              fit: BoxFit.cover,
+                                            )
+                                          : Container(),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  imageFile.length >= 4
+                                      ? Container(
+                                          decoration: BoxDecoration(
+                                              color: _colors4,
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          alignment: Alignment.center,
+                                          height: 40,
+                                          width: 50,
+                                          child: const Text(
+                                            '45%',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        )
+                                      : Container(),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(0),
+                              child: Column(
+                                children: [
+                                  ClipOval(
+                                    child: Container(
+                                      height: 55,
+                                      width: 55,
+                                      child: imageFile.length >= 5
+                                          ? Image.file(
+                                              imageFile.elementAt(4),
+                                              fit: BoxFit.cover,
+                                            )
+                                          : Container(),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  imageFile.length >= 4
+                                      ? Container(
+                                          decoration: BoxDecoration(
+                                              color: _colors5,
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          alignment: Alignment.center,
+                                          height: 40,
+                                          width: 50,
+                                          child: const Text(
+                                            '35%',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        )
+                                      : Container(),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        // const SizedBox(
+                        //   height: 5,
+                        // ),
+                        //second containers in side containers
+                        Column(
+                          children: [
 
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: <Widget>[
-                const SizedBox(
-                  height: 50,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: primaryColor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  height: 70,
-                  width: MediaQuery.of(context).size.width * .8,
-                  alignment: Alignment.center,
-                  child: const Text(
-                    'THE RESULT',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 34,
-                        color: Colors.white),
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Stack(
-                  alignment: AlignmentDirectional.bottomCenter,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: primaryColor,
-                      ),
-                      width: MediaQuery.of(context).size.width * .9,
-                      height: MediaQuery.of(context).size.height * .53,
-                      padding: const EdgeInsets.all(10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                padding: const EdgeInsets.all(0),
-                                child: Column(
-                                  children: [
-                                    ClipOval(
-                                      child: Container(
-                                        padding: const EdgeInsets.all(0),
-                                        height: 55,
-                                        width: 55,
-                                        child: imageFile.isEmpty
-                                            ? Container()
-                                            : Image.file(
-                                          imageFile.elementAt(0),
-                                          fit: BoxFit.cover,
+                            Padding(
+                              padding: const EdgeInsets.only(top:5,bottom: 5),
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: secondColor,
+                                        borderRadius: BorderRadius.circular(20)),
+                                    height: 130,
+                                    width: MediaQuery.of(context).size.width * .9,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Container(
+                                              padding: const EdgeInsets.all(0),
+                                              child: Column(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                    const EdgeInsets.all(8.0),
+                                                    child: ClipOval(
+                                                      child: Container(
+                                                        padding:
+                                                        const EdgeInsets.all(
+                                                            0),
+                                                        height: 80,
+                                                        width: 85,
+                                                        child: imageFile.isEmpty
+                                                            ? Container()
+                                                            : Image.file(
+                                                          imageFile
+                                                              .elementAt(0),
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Text("Name",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.bold)),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 20, top: 10),
+                                              child: Text(
+                                                "about",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 190,
+                                              height: 90,
+                                              padding: EdgeInsets.only(top: 10,),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(20),
+                                                // color: Colors.red,
+                                              ),
+                                              child: Text(
+                                                "it' usefule and had many feateur and many peolpel love to use it every day",
+
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Positioned(
+                                    left: 295,
+                                    bottom: 5,
+                                    child: Container(
+                                      width: 45,
+                                      decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          borderRadius:
+                                          BorderRadius.circular(20)),
+                                      child: IconButton(
+                                        onPressed: () => Utils.openLink(
+                                            url:
+                                            'https://en.wikipedia.org/wiki/Bade'),
+                                        icon: Icon(
+                                          FontAwesomeIcons.externalLinkAlt,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    imageFile.isEmpty
-                                        ? Container()
-                                        : Container(
-                                      decoration: BoxDecoration(
-                                          color: _colors3,
-                                          borderRadius:
-                                          BorderRadius.circular(10)),
-                                      alignment: Alignment.center,
-                                      height: 40,
-                                      width: 50,
-                                      child: const Text(
-                                        '85%',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  )
+                                ],
                               ),
-                              Container(
-                                padding: const EdgeInsets.all(0),
-                                child: Column(
-                                  children: [
-                                    ClipOval(
-                                      child: Container(
-                                        padding: const EdgeInsets.all(0),
-                                        height: 55,
-                                        width: 55,
-                                        child: imageFile.length >= 2
-                                            ? Image.file(
-                                          imageFile.elementAt(1),
-                                          fit: BoxFit.cover,
-                                        )
-                                            : Container(),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    imageFile.length >= 2
-                                        ? Container(
-                                      decoration: BoxDecoration(
-                                          color: _colors3,
-                                          borderRadius:
-                                          BorderRadius.circular(10)),
-                                      alignment: Alignment.center,
-                                      height: 40,
-                                      width: 50,
-                                      child: const Text(
-                                        '87%',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    )
-                                        : Container(),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(0),
-                                child: Column(
-                                  children: [
-                                    ClipOval(
-                                      child: Container(
-                                        padding: const EdgeInsets.all(0),
-                                        height: 55,
-                                        width: 55,
-                                        child: imageFile.length >= 3
-                                            ? Image.file(
-                                          imageFile.elementAt(2),
-                                          fit: BoxFit.cover,
-                                        )
-                                            : Container(),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    imageFile.length >= 3
-                                        ? Container(
-                                      decoration: BoxDecoration(
-                                          color: _colors,
-                                          borderRadius:
-                                          BorderRadius.circular(10)),
-                                      alignment: Alignment.center,
-                                      height: 40,
-                                      width: 50,
-                                      child: const Text(
-                                        '75%',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    )
-                                        : Container(),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(0),
-                                child: Column(
-                                  children: [
-                                    ClipOval(
-                                      child: Container(
-                                        padding: const EdgeInsets.all(0),
-                                        height: 55,
-                                        width: 55,
-                                        child: imageFile.length >= 4
-                                            ? Image.file(
-                                          imageFile.elementAt(3),
-                                          fit: BoxFit.cover,
-                                        )
-                                            : Container(),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    imageFile.length >= 4
-                                        ? Container(
-                                      decoration: BoxDecoration(
-                                          color: _colors4,
-                                          borderRadius:
-                                          BorderRadius.circular(10)),
-                                      alignment: Alignment.center,
-                                      height: 40,
-                                      width: 50,
-                                      child: const Text(
-                                        '45%',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    )
-                                        : Container(),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(0),
-                                child: Column(
-                                  children: [
-                                    ClipOval(
-                                      child: Container(
-                                        height: 55,
-                                        width: 55,
-                                        child: imageFile.length >= 5
-                                            ? Image.file(
-                                          imageFile.elementAt(4),
-                                          fit: BoxFit.cover,
-                                        )
-                                            : Container(),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    imageFile.length >= 4
-                                        ? Container(
-                                      decoration: BoxDecoration(
-                                          color: _colors5,
-                                          borderRadius:
-                                          BorderRadius.circular(10)),
-                                      alignment: Alignment.center,
-                                      height: 40,
-                                      width: 50,
-                                      child: const Text(
-                                        '35%',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    )
-                                        : Container(),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          // const SizedBox(
-                          //   height: 5,
-                          // ),
-                          //second containers in side containers
-                         Column(
-                           children: [
-                             Row(
-                               mainAxisAlignment: MainAxisAlignment.spaceAround,
-                               children: [
-                                 Container(
-                                   decoration: BoxDecoration(
-                                       color: secondColor,
-                                       borderRadius: BorderRadius.circular(20)),
-                                   height: MediaQuery.of(context).size.height * .2,
-                                   width: MediaQuery.of(context).size.width * .4,
-                                   child: Padding(
-                                     padding: const EdgeInsets.all(8.0),
-                                     child: const Text(
-                                       'images/2.jpg',style: TextStyle(),
-                                     ),
-                                   ),
-                                 ),
-                                 Container(
-                                   decoration: BoxDecoration(
-                                       color: secondColor,
-                                       borderRadius: BorderRadius.circular(20)),
-                                   height: MediaQuery.of(context).size.height * .2,
-                                   width: MediaQuery.of(context).size.width * .4,
-                                   child: Padding(
-                                     padding: const EdgeInsets.all(8.0),
-                                     child: Row(
-                                       crossAxisAlignment: CrossAxisAlignment.start,
-                                       children: [
-                                         const Text(
-                                           'images/2.jpg',
-                                         ),
-                                       ],
-                                     ),
-                                   ),
-                                 ),
+                            ),
+                            Padding(
+                                padding: const EdgeInsets.only(top:5,bottom: 5),
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: secondColor,
+                                        borderRadius: BorderRadius.circular(20)),
+                                    height: 130,
+                                    width: MediaQuery.of(context).size.width * .9,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Container(
+                                              padding: const EdgeInsets.all(0),
+                                              child: Column(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(8.0),
+                                                    child: ClipOval(
+                                                      child: Container(
+                                                        padding:
+                                                            const EdgeInsets.all(
+                                                                0),
+                                                        height: 80,
+                                                        width: 85,
+                                                        child: imageFile.isEmpty
+                                                            ? Container()
+                                                            : Image.file(
+                                                                imageFile
+                                                                    .elementAt(1),
+                                                                fit: BoxFit.cover,
+                                                              ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Text("Name",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold)),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 20, top: 10),
+                                              child: Text(
+                                                "about",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 190,
+                                              height: 90,
+                                              padding: EdgeInsets.only(top: 10,),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                // color: Colors.red,
+                                              ),
+                                              child: Text(
+                                                "it' usefule and had many feateur and many peolpel love to use it every day",
 
-                               ],
-                             ),
-                             SizedBox(height: 5,),
-                             Container(
-
-                               decoration: BoxDecoration(
-                                   color: secondColor,
-                                   borderRadius: BorderRadius.circular(20)),
-                               height: 130,
-                               width: MediaQuery.of(context).size.width * .9,
-                               child: Padding(
-                                 padding: const EdgeInsets.all(8.0),
-                                 child: Row(
-                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                   children: [
-                                     const Text(
-                                       'images/2.jpg',
-                                     ),
-                                   ],
-                                 ),
-                               ),
-                             ),
-
-
-                           ],
-                         )
-                        ],
-                      ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Positioned(
+                                    left: 295,
+                                    bottom: 5,
+                                    child: Container(
+                                      width: 45,
+                                      decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: IconButton(
+                                        onPressed: () => Utils.openLink(
+                                            url:
+                                                'https://en.wikipedia.org/wiki/Bade'),
+                                        icon: Icon(
+                                          FontAwesomeIcons.externalLinkAlt,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
                     ),
-                   /* Container(color: Colors.red,
+                  ),
+                  /* Container(color: Colors.red,
                     width: MediaQuery.of(context).size.width * 0.9,
                     height: 85
                       ,),*/
-                  ],
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 0,
+                  vertical: 8,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 0,
-                    vertical: 8,
-                  ),
-                  child: Row(
-                    //crossAxisAlignment: CrossAxisAlignment,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Column(children: <Widget>[
-                        MaterialButton(
-                          minWidth: 65,
-                          height: 65,
-                          color: Colors.green,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(35)),
-                          child: const Icon(
-                            Icons.share_sharp,
-                            color: Colors.white,
-                            size: 35,
-                          ),
-                          onPressed: () {},
+                child: Row(
+                  //crossAxisAlignment: CrossAxisAlignment,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Column(children: <Widget>[
+                      MaterialButton(
+                        minWidth: 65,
+                        height: 65,
+                        color: Colors.green,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(35)),
+                        child: const Icon(
+                          Icons.share_sharp,
+                          color: Colors.white,
+                          size: 35,
                         ),
-                        const Text('Share', style: TextStyle(fontSize: 18)),
-                      ]),
-                      Column(children: <Widget>[
-                        MaterialButton(
-                          minWidth: 65,
-                          height: 65,
-                          color: Colors.green,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(35)),
-                          child: const Icon(
-                            Icons.save_outlined,
-                            color: Colors.white,
-                            size: 35,
-                          ),
-                          onPressed: (){
-                            db.save(
-                                ImagesFile(
-                                    id:getID(),
-                                    date: DateTime.now(),
-                                    details: 'this result for flowers',
-                                    image1: Utility.imageName[0],
-                                    image2: Utility.imageName[1],
-                                    image3: Utility.imageName[2],
-                                    image4: Utility.imageName.length>3?Utility.imageName[3]:'',
-                                    image5: Utility.imageName.length>4?Utility.imageName[4]:'',
-                                    result1: '94%',
-                                    result2: '87%',
-                                    result3: '54%',
-                                    result4:Utility.imageName.length>3?'45%':'',
-                                    result5:Utility.imageName.length>4?'33%':'',
-                                    name: 'results ${ getID()}'
-                                ));
-                            //Navigator.of(context).pop;
-                            print(Utility.name+ '${getID()}');
+                        onPressed: () {},
+                      ),
+                      const Text('Share', style: TextStyle(fontSize: 18)),
+                    ]),
+                    Column(children: <Widget>[
+                      MaterialButton(
+                        minWidth: 65,
+                        height: 65,
+                        color: Colors.green,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(35)),
+                        child: const Icon(
+                          Icons.save_outlined,
+                          color: Colors.white,
+                          size: 35,
+                        ),
+                        onPressed: () {
+                          db.save(ImagesFile(
+                              id: getID(),
+                              date: DateTime.now(),
+                              details: 'this result for flowers',
+                              image1: Utility.imageName[0],
+                              image2: Utility.imageName[1],
+                              image3: Utility.imageName[2],
+                              image4: Utility.imageName.length > 3
+                                  ? Utility.imageName[3]
+                                  : '',
+                              image5: Utility.imageName.length > 4
+                                  ? Utility.imageName[4]
+                                  : '',
+                              result1: '94%',
+                              result2: '87%',
+                              result3: '54%',
+                              result4:
+                                  Utility.imageName.length > 3 ? '45%' : '',
+                              result5:
+                                  Utility.imageName.length > 4 ? '33%' : '',
+                              name: 'results ${getID()}'));
+                          //Navigator.of(context).pop;
+                          print(Utility.name + '${getID()}');
 
-                            // using old way by navigator;
+                          // using old way by navigator;
                           /*  Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(builder: (context) => const SearchPage(),));*/
 
-                            Get.offAll(
-                                ()=>SearchPage()
-                            );
-                            Utility.imageName.clear();
-                          },
+                          Get.offAll(() => SearchPage());
+                          Utility.imageName.clear();
+                        },
+                      ),
+                      const Text('Save', style: TextStyle(fontSize: 18)),
+                    ]),
+                    Column(children: <Widget>[
+                      MaterialButton(
+                        minWidth: 65,
+                        height: 65,
+                        color: Colors.lightGreen,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(35)),
+                        child: const Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                          size: 35,
                         ),
-                        const Text('Save', style: TextStyle(fontSize: 18)),
-                      ]),
-                      Column(children: <Widget>[
-                        MaterialButton(
-                          minWidth: 65,
-                          height: 65,
-                          color: Colors.lightGreen,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(35)),
-                          child: const Icon(
-                            Icons.delete,
-                            color: Colors.white,
-                            size: 35,
-                          ),
-                          onPressed: () async {
-                            AddFile imageFile1 =
-                                Provider.of<AddFile>(context, listen: false);
-                            await imageFile1.deleteImage(imageFile);
-                          },
-                        ),
-                        const Text('Delete', style: TextStyle(fontSize: 18)),
-                      ]),
-                    ],
-                  ),
+                        onPressed: () async {
+                          AddFile imageFile1 =
+                              Provider.of<AddFile>(context, listen: false);
+                          await imageFile1.deleteImage(imageFile);
+                        },
+                      ),
+                      const Text('Delete', style: TextStyle(fontSize: 18)),
+                    ]),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-
+      ),
     );
   }
 }
