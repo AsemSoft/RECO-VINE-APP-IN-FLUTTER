@@ -335,124 +335,21 @@ class _ResultPageState extends State<ResultPage> {
                         //second containers in side containers
                         Column(
                           children: [
-
                             Padding(
-                              padding: const EdgeInsets.only(top:5,bottom: 5),
+                              padding: const EdgeInsets.only(top: 5, bottom: 5),
                               child: Stack(
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
                                         color: secondColor,
-                                        borderRadius: BorderRadius.circular(20)),
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
                                     height: 130,
-                                    width: MediaQuery.of(context).size.width * .9,
+                                    width:
+                                        MediaQuery.of(context).size.width * .9,
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Container(
-                                              padding: const EdgeInsets.all(0),
-                                              child: Column(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                    const EdgeInsets.all(8.0),
-                                                    child: ClipOval(
-                                                      child: Container(
-                                                        padding:
-                                                        const EdgeInsets.all(
-                                                            0),
-                                                        height: 80,
-                                                        width: 85,
-                                                        child: imageFile.isEmpty
-                                                            ? Container()
-                                                            : Image.file(
-                                                          imageFile
-                                                              .elementAt(0),
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Text("Name",
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                          FontWeight.bold)),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Column(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: 20, top: 10),
-                                              child: Text(
-                                                "about",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold),
-                                              ),
-                                            ),
-                                            Container(
-                                              width: 190,
-                                              height: 90,
-                                              padding: EdgeInsets.only(top: 10,),
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(20),
-                                                // color: Colors.red,
-                                              ),
-                                              child: Text(
-                                                "it' usefule and had many feateur and many peolpel love to use it every day",
-
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Positioned(
-                                    left: 295,
-                                    bottom: 5,
-                                    child: Container(
-                                      width: 45,
-                                      decoration: BoxDecoration(
-                                          color: Colors.green,
-                                          borderRadius:
-                                          BorderRadius.circular(20)),
-                                      child: IconButton(
-                                        onPressed: () => Utils.openLink(
-                                            url:
-                                            'https://en.wikipedia.org/wiki/Bade'),
-                                        icon: Icon(
-                                          FontAwesomeIcons.externalLinkAlt,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                                padding: const EdgeInsets.only(top:5,bottom: 5),
-                              child: Stack(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        color: secondColor,
-                                        borderRadius: BorderRadius.circular(20)),
-                                    height: 130,
-                                    width: MediaQuery.of(context).size.width * .9,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         Column(
                                           crossAxisAlignment:
@@ -466,20 +363,23 @@ class _ResultPageState extends State<ResultPage> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsets.all(8.0),
+                                                        const EdgeInsets.all(
+                                                            8.0),
                                                     child: ClipOval(
                                                       child: Container(
                                                         padding:
-                                                            const EdgeInsets.all(
-                                                                0),
+                                                            const EdgeInsets
+                                                                .all(0),
                                                         height: 80,
                                                         width: 85,
                                                         child: imageFile.isEmpty
                                                             ? Container()
                                                             : Image.file(
                                                                 imageFile
-                                                                    .elementAt(1),
-                                                                fit: BoxFit.cover,
+                                                                    .elementAt(
+                                                                        0),
+                                                                fit: BoxFit
+                                                                    .cover,
                                                               ),
                                                       ),
                                                     ),
@@ -501,13 +401,16 @@ class _ResultPageState extends State<ResultPage> {
                                               child: Text(
                                                 "about",
                                                 style: TextStyle(
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             ),
                                             Container(
                                               width: 190,
                                               height: 90,
-                                              padding: EdgeInsets.only(top: 10,),
+                                              padding: EdgeInsets.only(
+                                                top: 10,
+                                              ),
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(20),
@@ -515,7 +418,6 @@ class _ResultPageState extends State<ResultPage> {
                                               ),
                                               child: Text(
                                                 "it' usefule and had many feateur and many peolpel love to use it every day",
-
                                               ),
                                             ),
                                           ],
@@ -524,8 +426,121 @@ class _ResultPageState extends State<ResultPage> {
                                     ),
                                   ),
                                   Positioned(
-                                    left: 295,
-                                    bottom: 5,
+                                    left: MediaQuery.of(context).size.width * .70,
+                                    bottom: MediaQuery.of(context).size.height * .02,
+                                    child: Container(
+                                      width: 45,
+                                      decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: IconButton(
+                                        onPressed: () => Utils.openLink(
+                                            url:
+                                                'https://en.wikipedia.org/wiki/Bade'),
+                                        icon: Icon(
+                                          FontAwesomeIcons.externalLinkAlt,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5, bottom: 5),
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: secondColor,
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    height: 130,
+                                    width:
+                                        MediaQuery.of(context).size.width * .9,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Container(
+                                              padding: const EdgeInsets.all(0),
+                                              child: Column(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: ClipOval(
+                                                      child: Container(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(0),
+                                                        height: 80,
+                                                        width: 85,
+                                                        child: imageFile.isEmpty
+                                                            ? Container()
+                                                            : Image.file(
+                                                                imageFile
+                                                                    .elementAt(
+                                                                        1),
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Text("Name",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold)),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 20, top: 10),
+                                              child: Text(
+                                                "about",
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 190,
+                                              height: 90,
+                                              padding: EdgeInsets.only(
+                                                top: 10,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                // color: Colors.red,
+                                              ),
+                                              child: Text(
+                                                "it' usefule and had many feateur and many peolpel love to use it every day",
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Positioned(
+                                    left: MediaQuery.of(context).size.width * .70,
+                                    bottom: MediaQuery.of(context).size.height * .02,
                                     child: Container(
                                       width: 45,
                                       decoration: BoxDecoration(
