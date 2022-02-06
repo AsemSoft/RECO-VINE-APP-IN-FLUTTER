@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_test/UI/theme.dart';
+import 'package:smart_test/core/utils/size_config.dart';
 import 'package:smart_test/main.dart';
-import 'package:smart_test/pages/start_splachScreen.dart';
-import 'package:smart_test/service/themeService.dart';
+import 'package:smart_test/widgets/custom_text.dart';
 
 class PView extends StatefulWidget {
-
   const PView({Key? key}) : super(key: key);
 
   @override
@@ -29,75 +26,79 @@ class _PViewState extends State<PView> {
 class ViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return Builder(builder: (context) {
+      SizeConfig().init(context);
       return Scaffold(
         body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(
-                child: Container(
-                  padding: const EdgeInsets.only(top: 40),
-                  child: Image.asset(
-                    "images/grapes.png",
-                    width: 300,
-                    height: 300,
+          child: Container(
+            margin: EdgeInsets.only(
+                top: SizeConfig.defaultSize! * .4,
+                left: SizeConfig.defaultSize! * .02,
+                right: SizeConfig.defaultSize! * .02),
+            width: SizeConfig.defaultSize! * 1.1,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "images/grapes.png",
+                  width: 200,
+                  height: 200,
+                ),
+                // Text for RECO VINE APP
+                CustomeText(
+                  text: 'RECO VINE APP',
+                  // size: 35,
+
+                  style: GoogleFonts.lemon(color: primaryColor, fontSize: 27),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                //Text Recongnizg the types
+                CustomeText(
+                  text: 'Recognizing the types of \n'
+                      '    the vine based on the\n'
+                      '       image of list leaves\n',
+                  style: GoogleFonts.lato(
+                    color: primaryColor,
+                    fontSize: 19,
                   ),
                 ),
-              ),
-              const Text(
-                'RECO VINE APP',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                    color: primaryColor),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text('Recognizing the types of',
-                  style: TextStyle(fontSize: 20, color: primaryColor)),
-              const SizedBox(
-                height: 5,
-              ),
-              const Text('the vine based on the',
-                  style: TextStyle(fontSize: 20, color: primaryColor)),
-              const SizedBox(
-                height: 5,
-              ),
-              const Text('image of list leaves',
-                  style: TextStyle(fontSize: 20, color: primaryColor)),
-              const SizedBox(
-                height: 40,
-              ),
-
-              MaterialButton(
-                minWidth: 340,
-                height: 50,
-                color: primaryColor,
-                textColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                const SizedBox(
+                  height: 20,
                 ),
-                onPressed: () async {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MyApp(),
-                      ));
+                //Get Started button
+                MaterialButton(
+                  padding: EdgeInsets.all(10),
 
-                  SharedPreferences pref =
-                      await SharedPreferences.getInstance();
-                  pref.setBool('x', true);
-                },
-                child: Text(
-                  "Get Started",
-                  style: TextStyle(fontSize: 20),
+                  minWidth: SizeConfig.defaultSize! * 1.1,
+                  // height: 50,
+                  color: primaryColor,
+                  textColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  onPressed: () async {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MyApp(),
+                        ));
+
+                    SharedPreferences pref =
+                        await SharedPreferences.getInstance();
+                    pref.setBool('x', true);
+                  },
+                  child: CustomeText(
+                    text: "Get Started",
+                    style: GoogleFonts.lalezar(
+                      fontSize: 30,
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );

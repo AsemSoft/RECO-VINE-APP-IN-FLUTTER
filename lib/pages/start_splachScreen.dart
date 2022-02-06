@@ -23,13 +23,13 @@ class _StrartSplachScreenState extends State<StrartSplachScreen> {
   Widget build(BuildContext context) {
     return  Center(
       child: SplashScreenView(
-            navigateRoute: MainPage(),
+            navigateRoute:const MainPage(),
             duration:5000 ,
             imageSize: 250,
             imageSrc:"images/started page.png",
             text: "RECO VINE APP",
             textType: TextType.ColorizeAnimationText,
-            colors: [
+            colors: const [
               Colors.purple,
               Colors.blue,
               Colors.yellow,

@@ -12,6 +12,7 @@ import 'package:smart_test/pages/search.dart';
 import 'package:smart_test/provider/add_file.dart';
 import 'package:smart_test/service/file_db.dart';
 import 'package:smart_test/service/image_file.dart';
+import 'package:smart_test/service/size_config.dart';
 import 'package:smart_test/service/utils.dart';
 import 'package:smart_test/ulity.dart';
 import 'package:smart_test/widgets/drawer.dart';
@@ -64,6 +65,7 @@ class _ResultPageState extends State<ResultPage> {
         }
       }
     });
+
   }
 
   int getID() {
@@ -74,10 +76,11 @@ class _ResultPageState extends State<ResultPage> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     List<File> imageFile = Provider.of<AddFile>(context).imageFile;
-
+  SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -92,9 +95,7 @@ class _ResultPageState extends State<ResultPage> {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: <Widget>[
-              const SizedBox(
-                height: 50,
-              ),
+
               Container(
                 decoration: BoxDecoration(
                   color: primaryColor,
@@ -458,8 +459,7 @@ class _ResultPageState extends State<ResultPage> {
                                         borderRadius:
                                             BorderRadius.circular(20)),
                                     height: 130,
-                                    width:
-                                        MediaQuery.of(context).size.width * .9,
+                                    width:SizeConfig.screenWidth! * .9,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
@@ -519,7 +519,7 @@ class _ResultPageState extends State<ResultPage> {
                                               ),
                                             ),
                                             Container(
-                                              width: 190,
+                                              width: SizeConfig.screenWidth! *.4,
                                               height: 90,
                                               padding: EdgeInsets.only(
                                                 top: 10,
@@ -539,8 +539,10 @@ class _ResultPageState extends State<ResultPage> {
                                     ),
                                   ),
                                   Positioned(
+                                    // left: SizeConfig.defaultSize! <= 411 ? SizeConfig.screenWidth! * .50 :SizeConfig.screenWidth! *.60 ,
                                     left: MediaQuery.of(context).size.width * .70,
                                     bottom: MediaQuery.of(context).size.height * .02,
+
                                     child: Container(
                                       width: 45,
                                       decoration: BoxDecoration(
@@ -658,8 +660,25 @@ class _ResultPageState extends State<ResultPage> {
                           size: 35,
                         ),
                         onPressed: () async {
-                          AddFile imageFile1 =
-                              Provider.of<AddFile>(context, listen: false);
+                          // Get.defaultDialog(
+                          //   title: "Warring",
+                          //   middleText: "Are you sure to delete result ? ",
+                          //   backgroundColor: primaryColor,
+                          //   titleStyle: TextStyle(color: Colors.red),
+                          //   middleTextStyle: TextStyle(color: Colors.white),
+                          //   textCancel: "Cancel",
+                          //   textConfirm: "Confirm",
+                          //   barrierDismissible: false,
+                          //   cancelTextColor: Colors.white,
+                          //   buttonColor: Colors.white,
+                          //   radius: 30,
+                          // onConfirm: () async{
+                          //   AddFile imageFile1 =
+                          //   Provider.of<AddFile>(context, listen: false);
+                          //   await imageFile1.deleteImage(imageFile);
+                          // },
+                          // );
+                          AddFile imageFile1 = Provider.of<AddFile>(context,listen: false);
                           await imageFile1.deleteImage(imageFile);
                         },
                       ),

@@ -18,30 +18,11 @@ class _MainDrawerState extends State<MainDrawer> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Container(
-            child: Padding(
-              padding: EdgeInsets.only(top: 50),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  CircleAvatar(
-                    radius: 50.0,
-                    backgroundImage: AssetImage("images/profile.png"),
-                  ),
-                  SizedBox(
-                    height: 5.0,
-                  ),
-                  Text(
-                    "User Name",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
-                  )
-                ],
-              ),
+          const DrawerHeader(
+            decoration: BoxDecoration(
+              color: primaryColor,
             ),
-          ),
-          SizedBox(
-            height: 20,
+            child: null,
           ),
           ListTile(
             onTap: () {
@@ -51,23 +32,17 @@ class _MainDrawerState extends State<MainDrawer> {
             leading: Icon(Icons.save),
             iconColor: Colors.green,
           ),
-
           ListTile(
-
             onTap: () {
-
-
               setState(() {
                 ThemeService().switchTheme();
-                setState(() {
-
-                });
+                setState(() {});
               });
             },
-
             title: Get.isDarkMode ? Text("Light Mode") : Text(" Dark Mode"),
-            leading:Icon( Get.isDarkMode ? Icons.wb_sunny_outlined : Icons.nightlight_round),
-
+            leading: Icon(Get.isDarkMode
+                ? Icons.wb_sunny_outlined
+                : Icons.nightlight_round),
             iconColor: Colors.green,
           ),
           ListTile(
@@ -96,14 +71,13 @@ class _MainDrawerState extends State<MainDrawer> {
                 middleTextStyle: TextStyle(color: Colors.white),
                 textCancel: "Cancel",
                 textConfirm: "Confirm",
-                onConfirm: (){
+                onConfirm: () {
                   SystemNavigator.pop();
                 },
                 barrierDismissible: false,
                 cancelTextColor: Colors.white,
                 buttonColor: Colors.white,
                 radius: 30,
-
               );
             },
             title: Text("Exit "),

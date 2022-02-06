@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_test/UI/theme.dart';
+import 'package:smart_test/core/utils/size_config.dart';
 import 'package:smart_test/pages/result_page.dart';
 import 'package:smart_test/provider/add_file.dart';
 import 'package:smart_test/ulity.dart';
@@ -21,39 +22,15 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   File? img1, img2, img3, img4, img5;
-  final Color _colors = const Color(0x98489973);
   final picker = ImagePicker();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   List<File> imageFile = [];
-  bool isButtonDisable1 = false;
-  bool isButtonDisable2 = false;
-  bool isButtonDisable3 = false;
-  bool isButtonDisable4 = false;
-  bool isButtonDisable5 = false;
 
   getImage(ImageSource src,int i) async {
     final pickedFile = await picker.pickImage(source: src);
     if (pickedFile!.path !=null) {
       if (File(pickedFile.path).readAsBytesSync().length< 800000){
         if (i == 1) {
-
-
-          //second solution  setState() called after dispose()
-     /*     if (mounted) {
-            setState(() {
-              img1 = File(pickedFile.path);
-              print("setstate called ");
-              // Your state change code goes here
-            });
-          }*/
-
-          //fist solution of sestate called after disposed
-          print("before setState called");
-
-
-          print("setstate called ");
-
-
           if (!mounted) return;
           setState(() {
             img1 = File(pickedFile.path);
@@ -62,11 +39,7 @@ class _MainPageState extends State<MainPage> {
           imageFile.add(img1!);
           Utility.imageName.add(Utility.base64String(img1!.readAsBytesSync()));
           print(File(pickedFile.path).readAsBytesSync().length);
-          isButtonDisable1 = true;
-          // Utility.img = img1!.readAsBytesSync();
-          // Utility.fileByte = img1!.readAsBytesSync();
-          // print(Utility.fileByte);
-          // // print(img1.toString());
+
         }
         else if (i == 2) {
           setState(() {
@@ -75,7 +48,7 @@ class _MainPageState extends State<MainPage> {
           imageFile.add(img2!);
           Utility.imageName.add(Utility.base64String(img2!.readAsBytesSync()));
           print(File(pickedFile.path).readAsBytesSync().length);
-          isButtonDisable2 = true;
+          // isButtonDisable2 = true;
         }
         else if (i == 3) {
           setState(() {
@@ -84,7 +57,7 @@ class _MainPageState extends State<MainPage> {
           imageFile.add(img3!);
           Utility.imageName.add(Utility.base64String(img3!.readAsBytesSync()));
           print(File(pickedFile.path).readAsBytesSync().length);
-          isButtonDisable3 = true;
+          // isButtonDisable3 = true;
         }
         else if (i == 4) {
           setState(() {
@@ -93,7 +66,7 @@ class _MainPageState extends State<MainPage> {
           imageFile.add(img4!);
           Utility.imageName.add(Utility.base64String(img4!.readAsBytesSync()));
           print(File(pickedFile.path).readAsBytesSync().length);
-          isButtonDisable4 = true;
+          // isButtonDisable4 = true;
         }
         else if (i == 5) {
           setState(() {
@@ -102,7 +75,7 @@ class _MainPageState extends State<MainPage> {
           imageFile.add(img5!);
           Utility.imageName.add(Utility.base64String(img5!.readAsBytesSync()));
           print(File(pickedFile.path).readAsBytesSync().length);
-          isButtonDisable5 = true;
+          // isButtonDisable5 = true;
         }
       }
       else {
@@ -133,13 +106,13 @@ class _MainPageState extends State<MainPage> {
   }
 
 
-  void showWarningForm(context) async {
+/*  void showWarningForm(context) async {
     Container alertDialog = Container(
       padding: EdgeInsets.zero,
       child: AlertDialog(
         actions: <Widget>[
           MaterialButton(
-            color:primaryColor,
+            color:Colors.red,
             onPressed: ()
             {
               Navigator.pop(context);
@@ -169,20 +142,19 @@ class _MainPageState extends State<MainPage> {
         builder: (context) {
           return alertDialog;
         });
-  }
+  }*/
 
-  bool disable = false;
+  // bool disable = false;
 
   @override
   Widget build(BuildContext context) {
-    double screenwidth = MediaQuery.of(context).size.width;
-    double screenheight = MediaQuery.of(context).size.height;
-    GAddFile gAddFile = Get.put(GAddFile());
+    SizeConfig().init(context);
     return  Scaffold(
           appBar: AppBar(
-            title: Text("Main Page"),
+            title: const Text("Main Page"),
             centerTitle: true,
           ),
+
           drawer: Drawer(
             child: MainDrawer(),
           ),
@@ -190,7 +162,7 @@ class _MainPageState extends State<MainPage> {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                  padding:  EdgeInsets.only(top:SizeConfig.defaultSize! * .04),
                   child: Container(
                     margin: EdgeInsets.all(5),
                     decoration: BoxDecoration(
@@ -235,7 +207,7 @@ class _MainPageState extends State<MainPage> {
                                 bottomLeft: Radius.circular(15),
                                 bottomRight: Radius.circular(15),
                               )),
-                          enableFeedback: disable,
+                          // enableFeedback: disable,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const <Widget>[
@@ -246,7 +218,8 @@ class _MainPageState extends State<MainPage> {
                               Icon(Icons.add, color: Colors.white),
                             ],
                           ),
-                          onPressed:isButtonDisable1?null:(){
+                            // isButtonDisable1?null:
+                          onPressed:(){
                             var ad = AlertDialog(
                               title: const Text('Choose an image'),
                               content: Container(
@@ -346,7 +319,8 @@ class _MainPageState extends State<MainPage> {
                               Icon(Icons.add, color: Colors.white),
                             ],
                           ),
-                          onPressed:isButtonDisable2?null:(){
+                            // isButtonDisable2?null:
+                          onPressed:(){
                             var ad = AlertDialog(
                               title: const Text('Choose an image'),
                               content: Container(
@@ -390,7 +364,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                 ),
-                  Padding(
+                Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Container(
                     margin: const EdgeInsets.all(5),
@@ -446,7 +420,8 @@ class _MainPageState extends State<MainPage> {
                               Icon(Icons.add, color: Colors.white),
                             ],
                           ),
-                          onPressed:isButtonDisable3?null:(){
+                            // isButtonDisable3?null:
+                          onPressed:(){
                             var ad = AlertDialog(
                               title: const Text('Choose an image'),
                               content: Container(
@@ -545,7 +520,8 @@ class _MainPageState extends State<MainPage> {
                               Icon(Icons.add, color: Colors.white),
                             ],
                           ),
-                          onPressed:isButtonDisable4?null:(){
+                          // isButtonDisable4?null:()
+                          onPressed:(){
                             var ad = AlertDialog(
                               title: const Text('Choose an image'),
                               content: Container(
@@ -644,7 +620,8 @@ class _MainPageState extends State<MainPage> {
                               Icon(Icons.add, color: Colors.white),
                             ],
                           ),
-                          onPressed:isButtonDisable5?null:(){
+                            // isButtonDisable5?null:
+                          onPressed:(){
                             var ad = AlertDialog(
                               title: const Text('Choose an image'),
                               content: Container(
@@ -707,7 +684,7 @@ class _MainPageState extends State<MainPage> {
                             bottomRight: Radius.circular(20),
                           )),
                       height: 60,
-                      child: Text(
+                      child:const Text(
                         "Swipe To Execute",
                         style: TextStyle(
                             color: Colors.white,
