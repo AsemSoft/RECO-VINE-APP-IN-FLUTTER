@@ -23,9 +23,11 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   File? img1, img2, img3, img4, img5;
   final picker = ImagePicker();
-  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+  // final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   List<File> imageFile = [];
 
+
+  //function git image
   getImage(ImageSource src,int i) async {
     final pickedFile = await picker.pickImage(source: src);
     if (pickedFile!.path !=null) {
@@ -36,9 +38,7 @@ class _MainPageState extends State<MainPage> {
             img1 = File(pickedFile.path);
             print("setstate called ");
           });
-          imageFile.add(img1!);
-          Utility.imageName.add(Utility.base64String(img1!.readAsBytesSync()));
-          print(File(pickedFile.path).readAsBytesSync().length);
+
 
         }
         else if (i == 2) {
@@ -106,44 +106,6 @@ class _MainPageState extends State<MainPage> {
   }
 
 
-/*  void showWarningForm(context) async {
-    Container alertDialog = Container(
-      padding: EdgeInsets.zero,
-      child: AlertDialog(
-        actions: <Widget>[
-          MaterialButton(
-            color:Colors.red,
-            onPressed: ()
-            {
-              Navigator.pop(context);
-            },
-
-            child:const Text('ok',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-          ),
-        ],
-        content: Container(
-          padding: EdgeInsets.zero,
-          height: 60,
-          child: const Text('Please select image size less than 2 MG',
-            style: TextStyle(color: primaryColor, fontSize: 20,),
-          ),
-        ),
-        title:  Row(
-          children:const [
-            Text('Image Error' ,style: TextStyle(color:Colors.red,fontWeight: FontWeight.bold),),
-            SizedBox(width: 20),
-            Icon(Icons.warning,color: Colors.red,size: 30,),
-          ],
-        ),
-      ),
-    );
-    await showDialog(
-        context: context,
-        builder: (context) {
-          return alertDialog;
-        });
-  }*/
-
   // bool disable = false;
 
   @override
@@ -206,7 +168,8 @@ class _MainPageState extends State<MainPage> {
                                 topLeft: Radius.circular(15),
                                 bottomLeft: Radius.circular(15),
                                 bottomRight: Radius.circular(15),
-                              )),
+                              ),
+                          ),
                           // enableFeedback: disable,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
