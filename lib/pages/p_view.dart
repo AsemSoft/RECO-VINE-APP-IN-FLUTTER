@@ -115,7 +115,7 @@ class ViewPage extends StatelessWidget {
                     ),
                     onPressed: () async {
 
-                      Get.to(StrartSplachScreen());
+                      Get.to(const StrartSplachScreen());
                       SharedPreferences pref =
                       await SharedPreferences.getInstance();
                       pref.setBool('x', true);
