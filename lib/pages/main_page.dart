@@ -29,15 +29,20 @@ class _MainPageState extends State<MainPage> {
 
   //function git image
   getImage(ImageSource src,int i) async {
-    final pickedFile = await picker.pickImage(source: src);
+    final  XFile?  pickedFile = await picker.pickImage(source: src);
     if (pickedFile!.path !=null) {
       if (File(pickedFile.path).readAsBytesSync().length< 800000){
         if (i == 1) {
+
+          // use wiht setState to check if the screen is still on screen or disposed
           if (!mounted) return;
           setState(() {
             img1 = File(pickedFile.path);
-            print("setstate called ");
           });
+          imageFile.add(img1!);
+          Utility.imageName.add(Utility.base64String(img1!.readAsBytesSync()));
+          print("image leanth is ${imageFile.length}");
+
 
 
         }
@@ -47,7 +52,8 @@ class _MainPageState extends State<MainPage> {
           });
           imageFile.add(img2!);
           Utility.imageName.add(Utility.base64String(img2!.readAsBytesSync()));
-          print(File(pickedFile.path).readAsBytesSync().length);
+          print("image leanth is ${imageFile.length}");
+          // print(File(pickedFile.path).readAsBytesSync().length);
           // isButtonDisable2 = true;
         }
         else if (i == 3) {
@@ -56,7 +62,9 @@ class _MainPageState extends State<MainPage> {
           });
           imageFile.add(img3!);
           Utility.imageName.add(Utility.base64String(img3!.readAsBytesSync()));
-          print(File(pickedFile.path).readAsBytesSync().length);
+          print("image leanth is ${imageFile.length}");
+
+          // print(File(pickedFile.path).readAsBytesSync().length);
           // isButtonDisable3 = true;
         }
         else if (i == 4) {
@@ -65,7 +73,10 @@ class _MainPageState extends State<MainPage> {
           });
           imageFile.add(img4!);
           Utility.imageName.add(Utility.base64String(img4!.readAsBytesSync()));
-          print(File(pickedFile.path).readAsBytesSync().length);
+          print("image leanth is ${imageFile.length}");
+
+
+          // print(File(pickedFile.path).readAsBytesSync().length);
           // isButtonDisable4 = true;
         }
         else if (i == 5) {
@@ -74,14 +85,14 @@ class _MainPageState extends State<MainPage> {
           });
           imageFile.add(img5!);
           Utility.imageName.add(Utility.base64String(img5!.readAsBytesSync()));
-          print(File(pickedFile.path).readAsBytesSync().length);
+          print("image leanth is ${imageFile.length}");
+
+          // print(File(pickedFile.path).readAsBytesSync().length);
           // isButtonDisable5 = true;
         }
       }
       else {
 
-        // print(File(pickedFile.path).readAsBytesSync().length);
-        // showWarningForm(context);
         Get.defaultDialog(
           title: "Image Error",
           middleText: "Please select image size less than 2 MG",
@@ -107,7 +118,13 @@ class _MainPageState extends State<MainPage> {
 
 
   // bool disable = false;
-
+ @override
+  // void setState(VoidCallback fn) {
+  //   // TODO: implement setState
+  //   if(mounted){
+  //     super.setState(fn);
+  //   }
+  // }
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -123,6 +140,9 @@ class _MainPageState extends State<MainPage> {
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
+//القيم التي بترسل img1 ,2 ,..3
+              // قيمة الـ index في الصوره في الداله getImage
+              //   first
                 Padding(
                   padding:  EdgeInsets.only(top:SizeConfig.defaultSize! * .04),
                   child: Container(
@@ -226,6 +246,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                 ),
+                // second
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Container(
@@ -327,6 +348,8 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                 ),
+
+                //third
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Container(
@@ -427,6 +450,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                 ),
+                // fourth
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Container(
@@ -527,6 +551,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                 ),
+                // five
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Container(
@@ -656,62 +681,42 @@ class _MainPageState extends State<MainPage> {
                       ),
 
                       onPressed: () async {
-                        print(imageFile);
 
                         AddFile imageFile1 = Provider.of<AddFile>(context, listen: false);
                         await imageFile1.addImage(imageFile);
-
-                        // await  gAddFile.addImage(imageFile) ;
-                        if (imageFile1.imageFile.length >= 3) {
-
-                          // using old way by navigator;
-                          /*Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ResultPage(),
-                              ));*/
-                          Get.to(ResultPage());
-                        } else if (imageFile1.imageFile.length== 0) {
+                        if (imageFile1.imageFile.isEmpty) {
                           Get.defaultDialog(
                             title: "Error",
                             middleText: "No Image selected ",
                             backgroundColor: primaryColor,
-                            titleStyle: TextStyle(color: Colors.red),
-                            middleTextStyle: TextStyle(color: Colors.white),
+                            titleStyle: const TextStyle(color: Colors.red),
+                            middleTextStyle: const TextStyle(color: Colors.white),
                             textCancel: "Cancel",
                             cancelTextColor: Colors.white,
                             buttonColor: Colors.white,
 
                             radius: 30,
                           );
-                        } else {
+                        }
+                        else if( imageFile1.imageFile.length <=2) {
                           Get.defaultDialog(
                             title: "Error",
                             middleText: "Image selected is less than two ",
                             backgroundColor: primaryColor,
-                            titleStyle: TextStyle(color: Colors.red),
-                            middleTextStyle: TextStyle(color: Colors.white),
+                            titleStyle: const TextStyle(color: Colors.red),
+                            middleTextStyle: const TextStyle(color: Colors.white),
                             textCancel: "Cancel",
                             cancelTextColor: Colors.white,
                             buttonColor: Colors.white,
-
                             radius: 30,
                           );
 
-                          // snakbar we can delete
-                          // Get.snackbar(
-                          // 'Error',
-                          // 'Image Selected less than two',
-                          // snackPosition: SnackPosition.BOTTOM,
-                          // colorText: Colors.red,
-                          // leftBarIndicatorColor: Colors.red,
-                          // backgroundColor: Colors.white,
-                          // icon: Icon(
-                          // Icons.error,
-                          // color: Colors.red,
-                          // ),
-                          // );
+
                         }
+                        else   {
+                          Get.to( ResultPage());
+                        }
+
                       },
                     ),
                   ),

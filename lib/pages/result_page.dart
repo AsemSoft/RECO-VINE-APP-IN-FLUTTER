@@ -80,7 +80,7 @@ class _ResultPageState extends State<ResultPage> {
   @override
   Widget build(BuildContext context) {
     List<File> imageFile = Provider.of<AddFile>(context).imageFile;
-  SizeConfig().init(context);
+    SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -146,9 +146,9 @@ class _ResultPageState extends State<ResultPage> {
                                       child: imageFile.isEmpty
                                           ? Container()
                                           : Image.file(
-                                              imageFile.elementAt(0),
-                                              fit: BoxFit.cover,
-                                            ),
+                                        imageFile.elementAt(0),
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
@@ -157,22 +157,23 @@ class _ResultPageState extends State<ResultPage> {
                                   imageFile.isEmpty
                                       ? Container()
                                       : Container(
-                                          decoration: BoxDecoration(
-                                              color: _colors3,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          alignment: Alignment.center,
-                                          height: 40,
-                                          width: 50,
-                                          child: const Text(
-                                            '85%',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        ),
+                                    decoration: BoxDecoration(
+                                        color: _colors3,
+                                        borderRadius:
+                                        BorderRadius.circular(10)),
+                                    alignment: Alignment.center,
+                                    height: 40,
+                                    width: 50,
+                                    child: const Text(
+                                      '85%',
+                                      style:
+                                      TextStyle(color: Colors.white),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
+                            //two
                             Container(
                               padding: const EdgeInsets.all(0),
                               child: Column(
@@ -184,9 +185,9 @@ class _ResultPageState extends State<ResultPage> {
                                       width: 55,
                                       child: imageFile.length >= 2
                                           ? Image.file(
-                                              imageFile.elementAt(1),
-                                              fit: BoxFit.cover,
-                                            )
+                                        imageFile.elementAt(1),
+                                        fit: BoxFit.cover,
+                                      )
                                           : Container(),
                                     ),
                                   ),
@@ -195,19 +196,19 @@ class _ResultPageState extends State<ResultPage> {
                                   ),
                                   imageFile.length >= 2
                                       ? Container(
-                                          decoration: BoxDecoration(
-                                              color: _colors3,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          alignment: Alignment.center,
-                                          height: 40,
-                                          width: 50,
-                                          child: const Text(
-                                            '87%',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        )
+                                    decoration: BoxDecoration(
+                                        color: _colors3,
+                                        borderRadius:
+                                        BorderRadius.circular(10)),
+                                    alignment: Alignment.center,
+                                    height: 40,
+                                    width: 50,
+                                    child: const Text(
+                                      '87%',
+                                      style:
+                                      TextStyle(color: Colors.white),
+                                    ),
+                                  )
                                       : Container(),
                                 ],
                               ),
@@ -223,9 +224,9 @@ class _ResultPageState extends State<ResultPage> {
                                       width: 55,
                                       child: imageFile.length >= 3
                                           ? Image.file(
-                                              imageFile.elementAt(2),
-                                              fit: BoxFit.cover,
-                                            )
+                                        imageFile.elementAt(2),
+                                        fit: BoxFit.cover,
+                                      )
                                           : Container(),
                                     ),
                                   ),
@@ -234,19 +235,19 @@ class _ResultPageState extends State<ResultPage> {
                                   ),
                                   imageFile.length >= 3
                                       ? Container(
-                                          decoration: BoxDecoration(
-                                              color: _colors,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          alignment: Alignment.center,
-                                          height: 40,
-                                          width: 50,
-                                          child: const Text(
-                                            '75%',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        )
+                                    decoration: BoxDecoration(
+                                        color: _colors,
+                                        borderRadius:
+                                        BorderRadius.circular(10)),
+                                    alignment: Alignment.center,
+                                    height: 40,
+                                    width: 50,
+                                    child: const Text(
+                                      '75%',
+                                      style:
+                                      TextStyle(color: Colors.white),
+                                    ),
+                                  )
                                       : Container(),
                                 ],
                               ),
@@ -260,11 +261,11 @@ class _ResultPageState extends State<ResultPage> {
                                       padding: const EdgeInsets.all(0),
                                       height: 55,
                                       width: 55,
-                                      child: imageFile.length >= 4
+                                      child: imageFile.length >=4
                                           ? Image.file(
-                                              imageFile.elementAt(3),
-                                              fit: BoxFit.cover,
-                                            )
+                                        imageFile.elementAt(3),
+                                        fit: BoxFit.cover,
+                                      )
                                           : Container(),
                                     ),
                                   ),
@@ -273,19 +274,19 @@ class _ResultPageState extends State<ResultPage> {
                                   ),
                                   imageFile.length >= 4
                                       ? Container(
-                                          decoration: BoxDecoration(
-                                              color: _colors4,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          alignment: Alignment.center,
-                                          height: 40,
-                                          width: 50,
-                                          child: const Text(
-                                            '45%',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        )
+                                    decoration: BoxDecoration(
+                                        color: _colors4,
+                                        borderRadius:
+                                        BorderRadius.circular(10)),
+                                    alignment: Alignment.center,
+                                    height: 40,
+                                    width: 50,
+                                    child: const Text(
+                                      '45%',
+                                      style:
+                                      TextStyle(color: Colors.white),
+                                    ),
+                                  )
                                       : Container(),
                                 ],
                               ),
@@ -298,41 +299,39 @@ class _ResultPageState extends State<ResultPage> {
                                     child: Container(
                                       height: 55,
                                       width: 55,
-                                      child: imageFile.length >= 5
+                                      child: imageFile.length >=5
                                           ? Image.file(
-                                              imageFile.elementAt(4),
-                                              fit: BoxFit.cover,
-                                            )
+                                        imageFile.elementAt(4),
+                                        fit: BoxFit.cover,
+                                      )
                                           : Container(),
                                     ),
                                   ),
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  imageFile.length >= 4
+                                  imageFile.length >= 5
                                       ? Container(
-                                          decoration: BoxDecoration(
-                                              color: _colors5,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          alignment: Alignment.center,
-                                          height: 40,
-                                          width: 50,
-                                          child: const Text(
-                                            '35%',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        )
+                                    decoration: BoxDecoration(
+                                        color: _colors5,
+                                        borderRadius:
+                                        BorderRadius.circular(10)),
+                                    alignment: Alignment.center,
+                                    height: 40,
+                                    width: 50,
+                                    child: const Text(
+                                      '35%',
+                                      style:
+                                      TextStyle(color: Colors.white),
+                                    ),
+                                  )
                                       : Container(),
                                 ],
                               ),
                             ),
                           ],
                         ),
-                        // const SizedBox(
-                        //   height: 5,
-                        // ),
+
                         //second containers in side containers
                         Column(
                           children: [
@@ -344,19 +343,19 @@ class _ResultPageState extends State<ResultPage> {
                                     decoration: BoxDecoration(
                                         color: secondColor,
                                         borderRadius:
-                                            BorderRadius.circular(20)),
+                                        BorderRadius.circular(20)),
                                     height: 130,
                                     width:
-                                        MediaQuery.of(context).size.width * .9,
+                                    MediaQuery.of(context).size.width * .9,
                                     child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      MainAxisAlignment.start,
                                       children: [
                                         Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
+                                          MainAxisAlignment.spaceAround,
                                           children: [
                                             Container(
                                               padding: const EdgeInsets.all(0),
@@ -364,31 +363,31 @@ class _ResultPageState extends State<ResultPage> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
+                                                    const EdgeInsets.all(
+                                                        8.0),
                                                     child: ClipOval(
                                                       child: Container(
                                                         padding:
-                                                            const EdgeInsets
-                                                                .all(0),
+                                                        const EdgeInsets
+                                                            .all(0),
                                                         height: 80,
                                                         width: 85,
                                                         child: imageFile.isEmpty
                                                             ? Container()
                                                             : Image.file(
-                                                                imageFile
-                                                                    .elementAt(
-                                                                        0),
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              ),
+                                                          imageFile
+                                                              .elementAt(
+                                                              0),
+                                                          fit: BoxFit
+                                                              .cover,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
                                                   Text("Name",
                                                       style: TextStyle(
                                                           fontWeight:
-                                                              FontWeight.bold)),
+                                                          FontWeight.bold)),
                                                 ],
                                               ),
                                             ),
@@ -396,29 +395,29 @@ class _ResultPageState extends State<ResultPage> {
                                         ),
                                         Column(
                                           children: [
-                                            Padding(
+                                           const Padding(
                                               padding: EdgeInsets.only(
                                                   left: 20, top: 10),
                                               child: Text(
                                                 "about",
                                                 style: TextStyle(
                                                     fontWeight:
-                                                        FontWeight.bold),
+                                                    FontWeight.bold),
                                               ),
                                             ),
                                             Container(
                                               width: 190,
                                               height: 90,
-                                              padding: EdgeInsets.only(
+                                              padding:const EdgeInsets.only(
                                                 top: 10,
                                               ),
                                               decoration: BoxDecoration(
                                                 borderRadius:
-                                                    BorderRadius.circular(20),
+                                                BorderRadius.circular(20),
                                                 // color: Colors.red,
                                               ),
-                                              child: Text(
-                                                "it' usefule and had many feateur and many peolpel love to use it every day",
+                                              child: const Text(
+                                                "it' useful and had many feature and many people love to use it every day",
                                               ),
                                             ),
                                           ],
@@ -434,12 +433,12 @@ class _ResultPageState extends State<ResultPage> {
                                       decoration: BoxDecoration(
                                           color: Colors.green,
                                           borderRadius:
-                                              BorderRadius.circular(20)),
+                                          BorderRadius.circular(20)),
                                       child: IconButton(
                                         onPressed: () => Utils.openLink(
                                             url:
-                                                'https://en.wikipedia.org/wiki/Bade'),
-                                        icon: Icon(
+                                            'https://en.wikipedia.org/wiki/Bade'),
+                                        icon: const Icon(
                                           FontAwesomeIcons.externalLinkAlt,
                                           color: Colors.white,
                                         ),
@@ -457,18 +456,18 @@ class _ResultPageState extends State<ResultPage> {
                                     decoration: BoxDecoration(
                                         color: secondColor,
                                         borderRadius:
-                                            BorderRadius.circular(20)),
+                                        BorderRadius.circular(20)),
                                     height: 130,
                                     width:SizeConfig.screenWidth! * .9,
                                     child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      MainAxisAlignment.start,
                                       children: [
                                         Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
+                                          MainAxisAlignment.spaceAround,
                                           children: [
                                             Container(
                                               padding: const EdgeInsets.all(0),
@@ -476,31 +475,31 @@ class _ResultPageState extends State<ResultPage> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
+                                                    const EdgeInsets.all(
+                                                        8.0),
                                                     child: ClipOval(
                                                       child: Container(
                                                         padding:
-                                                            const EdgeInsets
-                                                                .all(0),
+                                                        const EdgeInsets
+                                                            .all(0),
                                                         height: 80,
                                                         width: 85,
                                                         child: imageFile.isEmpty
                                                             ? Container()
                                                             : Image.file(
-                                                                imageFile
-                                                                    .elementAt(
-                                                                        1),
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              ),
+                                                          imageFile
+                                                              .elementAt(
+                                                              1),
+                                                          fit: BoxFit
+                                                              .cover,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                  Text("Name",
+                                                 const Text("Name",
                                                       style: TextStyle(
                                                           fontWeight:
-                                                              FontWeight.bold)),
+                                                          FontWeight.bold)),
                                                 ],
                                               ),
                                             ),
@@ -508,29 +507,28 @@ class _ResultPageState extends State<ResultPage> {
                                         ),
                                         Column(
                                           children: [
-                                            Padding(
+                                          const  Padding(
                                               padding: EdgeInsets.only(
                                                   left: 20, top: 10),
                                               child: Text(
                                                 "about",
                                                 style: TextStyle(
                                                     fontWeight:
-                                                        FontWeight.bold),
+                                                    FontWeight.bold),
                                               ),
                                             ),
                                             Container(
                                               width: SizeConfig.screenWidth! *.4,
                                               height: 90,
-                                              padding: EdgeInsets.only(
+                                              padding:const EdgeInsets.only(
                                                 top: 10,
                                               ),
                                               decoration: BoxDecoration(
                                                 borderRadius:
-                                                    BorderRadius.circular(20),
-                                                // color: Colors.red,
+                                                BorderRadius.circular(20),
                                               ),
-                                              child: Text(
-                                                "it' usefule and had many feateur and many peolpel love to use it every day",
+                                              child: const Text(
+                                                "it' useful and had many feature and many people love to use it every day",
                                               ),
                                             ),
                                           ],
@@ -548,12 +546,12 @@ class _ResultPageState extends State<ResultPage> {
                                       decoration: BoxDecoration(
                                           color: Colors.green,
                                           borderRadius:
-                                              BorderRadius.circular(20)),
+                                          BorderRadius.circular(20)),
                                       child: IconButton(
                                         onPressed: () => Utils.openLink(
                                             url:
-                                                'https://en.wikipedia.org/wiki/Bade'),
-                                        icon: Icon(
+                                            'https://en.wikipedia.org/wiki/Bade'),
+                                        icon:const Icon(
                                           FontAwesomeIcons.externalLinkAlt,
                                           color: Colors.white,
                                         ),
@@ -568,10 +566,7 @@ class _ResultPageState extends State<ResultPage> {
                       ],
                     ),
                   ),
-                  /* Container(color: Colors.red,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: 85
-                      ,),*/
+
                 ],
               ),
               Padding(
@@ -629,12 +624,11 @@ class _ResultPageState extends State<ResultPage> {
                               result2: '87%',
                               result3: '54%',
                               result4:
-                                  Utility.imageName.length > 3 ? '45%' : '',
+                              Utility.imageName.length >= 3 ? '45%' : '',
                               result5:
-                                  Utility.imageName.length > 4 ? '33%' : '',
+                              Utility.imageName.length >= 4 ? '33%' : '',
                               name: 'results ${getID()}'));
                           //Navigator.of(context).pop;
-                          print(Utility.name + '${getID()}');
 
                           // using old way by navigator;
                           /*  Navigator.pushReplacement(
@@ -648,7 +642,7 @@ class _ResultPageState extends State<ResultPage> {
                       const Text('Save', style: TextStyle(fontSize: 18)),
                     ]),
                     Column(children: <Widget>[
-                      MaterialButton(
+                      MaterialButton (
                         minWidth: 65,
                         height: 65,
                         color: Colors.lightGreen,
@@ -660,26 +654,29 @@ class _ResultPageState extends State<ResultPage> {
                           size: 35,
                         ),
                         onPressed: () async {
-                          // Get.defaultDialog(
-                          //   title: "Warring",
-                          //   middleText: "Are you sure to delete result ? ",
-                          //   backgroundColor: primaryColor,
-                          //   titleStyle: TextStyle(color: Colors.red),
-                          //   middleTextStyle: TextStyle(color: Colors.white),
-                          //   textCancel: "Cancel",
-                          //   textConfirm: "Confirm",
-                          //   barrierDismissible: false,
-                          //   cancelTextColor: Colors.white,
-                          //   buttonColor: Colors.white,
-                          //   radius: 30,
-                          // onConfirm: () async{
-                          //   AddFile imageFile1 =
-                          //   Provider.of<AddFile>(context, listen: false);
-                          //   await imageFile1.deleteImage(imageFile);
-                          // },
-                          // );
-                          AddFile imageFile1 = Provider.of<AddFile>(context,listen: false);
-                          await imageFile1.deleteImage(imageFile);
+                          // AddFile imageFile1 = Provider.of<AddFile>(context,listen: false);
+
+                          Get.defaultDialog(
+                            title: "Warring",
+                            middleText: "Are you sure to delete result ? ",
+                            backgroundColor: primaryColor,
+                            titleStyle: const TextStyle(color: Colors.red),
+                            middleTextStyle:const TextStyle(color: Colors.white),
+                            textCancel: "Cancel",
+                            textConfirm: "Confirm",
+                            barrierDismissible: false,
+                            cancelTextColor: Colors.white,
+                            buttonColor: Colors.white,
+                            radius: 30,
+                           // confirm: Container(color: Colors.red,),
+                           onConfirm: () async{
+                            AddFile imageFile1 =
+                            Provider.of<AddFile>(context, listen: false);
+                            await imageFile1.deleteImage(imageFile);
+                            Navigator.pop(context);
+                          },
+                          );
+
                         },
                       ),
                       const Text('Delete', style: TextStyle(fontSize: 18)),
