@@ -14,6 +14,7 @@ import 'package:smart_test/service/file_db.dart';
 import 'package:smart_test/service/image_file.dart';
 import 'package:smart_test/service/size_config.dart';
 import 'package:smart_test/service/utils.dart';
+import 'package:smart_test/test.dart';
 import 'package:smart_test/ulity.dart';
 import 'package:smart_test/widgets/drawer.dart';
 
@@ -673,7 +674,7 @@ class _ResultPageState extends State<ResultPage> {
                             AddFile imageFile1 =
                             Provider.of<AddFile>(context, listen: false);
                             await imageFile1.deleteImage(imageFile);
-                            Navigator.pop(context);
+                            Get.offAll(MainPage());
                           },
                           );
 
