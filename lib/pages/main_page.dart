@@ -146,6 +146,7 @@ class _MainPageState extends State<MainPage> {
                 Padding(
                   padding:  EdgeInsets.only(top:SizeConfig.defaultSize! * .04),
                   child: Container(
+                    width: SizeConfig.screenWidth! * .94,
                     margin: EdgeInsets.all(5),
                     decoration: BoxDecoration(
                       color: Colors.lightGreen,
@@ -156,8 +157,8 @@ class _MainPageState extends State<MainPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Container(
-                          height: 90,
-                          width: 100,
+                          height: SizeConfig.screenHeight! *.13,
+                          width: SizeConfig.screenWidth! * .23,
                           child: img1 == null
                               ? ClipRRect(
                               borderRadius: BorderRadius.circular(30),
@@ -180,7 +181,7 @@ class _MainPageState extends State<MainPage> {
                           ),
                         ),
                         MaterialButton(
-                          minWidth: 100,
+                          minWidth: SizeConfig.screenWidth! *.25,
                           color: primaryColor,
                           shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(

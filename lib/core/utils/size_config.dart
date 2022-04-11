@@ -12,7 +12,10 @@ class SizeConfig {
     orientation=MediaQuery.of(context).orientation;
 
     defaultSize =orientation == Orientation.landscape ?screenHeight! *.024:screenWidth;
-
+    print("==========================================");
     print("this is the default size $defaultSize");
+    print("==========================================");
+
+
   }
 }

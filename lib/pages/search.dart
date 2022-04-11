@@ -9,6 +9,7 @@ import 'package:smart_test/service/file_db.dart';
 import 'package:smart_test/service/image_file.dart';
 import 'package:smart_test/widgets/drawer.dart';
 
+import '../core/utils/size_config.dart';
 import 'main_page.dart';
 
 class SearchPage extends StatefulWidget {
@@ -123,51 +124,65 @@ class _SearchPageState extends State<SearchPage> {
           itemBuilder: (context,index){
             return Padding(
               padding: const EdgeInsets.all(5.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                // crossAxisAlignment: CrossAxisAlignment.start,
-                children:<Widget> [
-                  CircleAvatar(
-                    radius: 35,
-                    backgroundColor: primaryColor,
-                    child:const Icon(Icons.folder_rounded,size:50,color:Colors.white,),
-                  ),
-                  // const SizedBox(width: 20,),
-                  Column(
-                    children: [
-                      Text(
-                        // textEditingController.text.isNotEmpty?folderListTemp[index]:
-                          folderList[index],
-                          style:const TextStyle(fontSize:20,fontWeight:FontWeight.bold )),
-                      Text(
-                        // textEditingController.text.isNotEmpty?folderListTemp[index]:
-                        '${date[index]}',
-                      )],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left:10),
-                    child: MaterialButton(
-                      minWidth: 100,
-                      color: primaryColor,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(15),
-                            topLeft: Radius.circular(15),
-                            bottomLeft: Radius.circular(15),
-                            bottomRight: Radius.circular(15),
-                          )),
-
-                      onPressed:(){
-                        Navigator.of(context).pop;
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context,) => const View(),settings:RouteSettings(arguments:imagesFile[index])));
-                      },
-                      child: const Text('Check',style: TextStyle(color: Colors.white),),
+              child: Container(
+                width: SizeConfig.screenWidth! *.9 ,
+                height: SizeConfig.screenHeight! *.12,
+                margin: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Colors.lightGreen,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  children:<Widget> [
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: CircleAvatar(
+                        radius:25,
+                        backgroundColor: primaryColor,
+                        child:const Icon(Icons.folder_rounded,size:30,color:Colors.white,),
+                      ),
                     ),
-                  ),
+                    // const SizedBox(width: 20,),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          // textEditingController.text.isNotEmpty?folderListTemp[index]:
+                            folderList[index],
+                            style:const TextStyle(fontSize:15,fontWeight:FontWeight.bold )),
+                        Text(
+                          // textEditingController.text.isNotEmpty?folderListTemp[index]:
+                          '${date[index]}',
+                          style:TextStyle(fontSize:11,fontWeight:FontWeight.bold ) ,
+                        )],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: MaterialButton(
+                        minWidth: SizeConfig.screenWidth! *.1,
+                        color: primaryColor,
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(15),
+                              topLeft: Radius.circular(15),
+                              bottomLeft: Radius.circular(15),
+                              bottomRight: Radius.circular(15),
+                            )),
 
-                ],),
+                        onPressed:(){
+                          Navigator.of(context).pop;
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context,) => const View(),settings:RouteSettings(arguments:imagesFile[index])));
+                        },
+                        child: const Text('Check',style: TextStyle(color: Colors.white),),
+                      ),
+                    ),
+
+                  ],),
+              ),
 
             );
           }),

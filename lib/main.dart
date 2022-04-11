@@ -9,6 +9,7 @@ import 'package:smart_test/service/themeService.dart';
 import 'package:get/get.dart';
 import 'UI/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'core/utils/size_config.dart';
 import 'provider/add_file.dart';
 
 Future<void> main() async {
@@ -23,7 +24,7 @@ Future<void> main() async {
   // runApp(MyApp());
   runApp(ChangeNotifierProvider<AddFile>(
       create: (context)=>AddFile(),
-      child: _screen));
+      child:  _screen));
 
   // runApp(DevicePreview(builder: (context) => MyApp()));
   // runApp(DevicePreview(builder: (context) => _screen));
@@ -33,7 +34,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // SizeConfig().init(context);
     return  GetMaterialApp(
       debugShowCheckedModeBanner: false,
       // builder: DevicePreview.appBuilder,
